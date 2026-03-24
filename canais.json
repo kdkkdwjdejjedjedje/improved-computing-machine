@@ -1,0 +1,1346 @@
+{
+  "categories": [
+    {
+      "id": 0,
+      "name": "Todos"
+    },
+    {
+      "id": 8,
+      "name": "BBB 2026"
+    },
+    {
+      "id": 1,
+      "name": "Esportes"
+    },
+    {
+      "id": 2,
+      "name": "Infantil"
+    },
+    {
+      "id": 3,
+      "name": "Documentarios"
+    },
+    {
+      "id": 4,
+      "name": "Filmes e Séries"
+    },
+    {
+      "id": 5,
+      "name": "Noticias"
+    },
+    {
+      "id": 6,
+      "name": "Abertos"
+    },
+    {
+      "id": 7,
+      "name": "Variedades"
+    }
+  ],
+  "channels": [
+    {
+      "id": "bbbmosaico",
+      "image": "https://embedtv.best/assets/images/bbb.png",
+      "name": "BBB - Mosaico",
+      "categories": [
+        0,
+        8
+      ],
+      "url": "https://www2.embedtv.best/bbbmosaico"
+    },
+    {
+      "id": "bbb1",
+      "image": "https://embedtv.best/assets/images/bbb.png",
+      "name": "BBB - 1",
+      "categories": [
+        0,
+        8
+      ],
+      "url": "https://www2.embedtv.best/bbb1"
+    },
+    {
+      "id": "bbb2",
+      "image": "https://embedtv.best/assets/images/bbb.png",
+      "name": "BBB - 2",
+      "categories": [
+        0,
+        8
+      ],
+      "url": "https://www2.embedtv.best/bbb2"
+    },
+    {
+      "id": "bbb3",
+      "image": "https://embedtv.best/assets/images/bbb.png",
+      "name": "BBB - 3",
+      "categories": [
+        0,
+        8
+      ],
+      "url": "https://www2.embedtv.best/bbb3"
+    },
+    {
+      "id": "bbb4",
+      "image": "https://embedtv.best/assets/images/bbb.png",
+      "name": "BBB - 4",
+      "categories": [
+        0,
+        8
+      ],
+      "url": "https://www2.embedtv.best/bbb4"
+    },
+    {
+      "id": "bbb5",
+      "image": "https://embedtv.best/assets/images/bbb.png",
+      "name": "BBB - 5",
+      "categories": [
+        0,
+        8
+      ],
+      "url": "https://www2.embedtv.best/bbb5"
+    },
+    {
+      "id": "bbb6",
+      "image": "https://embedtv.best/assets/images/bbb.png",
+      "name": "BBB - 6",
+      "categories": [
+        0,
+        8
+      ],
+      "url": "https://www2.embedtv.best/bbb6"
+    },
+    {
+      "id": "bbb7",
+      "image": "https://embedtv.best/assets/images/bbb.png",
+      "name": "BBB - 7",
+      "categories": [
+        0,
+        8
+      ],
+      "url": "https://www2.embedtv.best/bbb7"
+    },
+    {
+      "id": "bbb8",
+      "image": "https://embedtv.best/assets/images/bbb.png",
+      "name": "BBB - 8",
+      "categories": [
+        0,
+        8
+      ],
+      "url": "https://www2.embedtv.best/bbb8"
+    },
+    {
+      "id": "bbb9",
+      "image": "https://embedtv.best/assets/images/bbb.png",
+      "name": "BBB - 9",
+      "categories": [
+        0,
+        8
+      ],
+      "url": "https://www2.embedtv.best/bbb9"
+    },
+    {
+      "id": "bbb10",
+      "image": "https://embedtv.best/assets/images/bbb.png",
+      "name": "BBB - 10",
+      "categories": [
+        0,
+        8
+      ],
+      "url": "https://www2.embedtv.best/bbb10"
+    },
+    {
+      "id": "24h_dragonball",
+      "image": "https://embedtv.best/assets/images/24h.png",
+      "name": "24H Dragon Ball Z",
+      "categories": [
+        0,
+        7,
+        2
+      ],
+      "url": "https://www2.embedtv.best/24h_dragonball"
+    },
+    {
+      "id": "24h_odeiachris",
+      "image": "https://embedtv.best/assets/images/24h.png",
+      "name": "24H Todo Mundo Odeia o Cris",
+      "categories": [
+        0,
+        7,
+        2
+      ],
+      "url": "https://www2.embedtv.best/24h_odeiachris"
+    },
+    {
+      "id": "24h_simpsons",
+      "image": "https://embedtv.best/assets/images/24h.png",
+      "name": "24H Os Simpsons",
+      "categories": [
+        0,
+        7,
+        2
+      ],
+      "url": "https://www2.embedtv.best/24h_simpsons"
+    },
+    {
+      "id": "adultswim",
+      "image": "https://embedtv.best/assets/images/adultswim.png",
+      "name": "Adult Swim",
+      "categories": [
+        0,
+        7,
+        4
+      ],
+      "url": "https://www2.embedtv.best/adultswim"
+    },
+    {
+      "id": "ae",
+      "image": "https://embedtv.best/assets/images/ae.png",
+      "name": "AE",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/ae"
+    },
+    {
+      "id": "animalplanet",
+      "image": "https://embedtv.best/assets/images/animalplanet.png",
+      "name": "Animal Planet",
+      "categories": [
+        0,
+        3
+      ],
+      "url": "https://www2.embedtv.best/animalplanet"
+    },
+    {
+      "id": "aparecida",
+      "image": "https://embedtv.best/assets/images/tvaparecida.png",
+      "name": "Aparecida",
+      "categories": [
+        0,
+        7,
+        6
+      ],
+      "url": "https://www2.embedtv.best/aparecida"
+    },
+    {
+      "id": "axn",
+      "image": "https://embedtv.best/assets/images/axn.png",
+      "name": "AXN",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/axn"
+    },
+    {
+      "id": "band",
+      "image": "https://embedtv.best/assets/images/band.png",
+      "name": "Band",
+      "categories": [
+        0,
+        6,
+        5
+      ],
+      "url": "https://www2.embedtv.best/band"
+    },
+    {
+      "id": "bandnews",
+      "image": "https://embedtv.best/assets/images/bandnews.png",
+      "name": "Band News",
+      "categories": [
+        0,
+        5,
+        6
+      ],
+      "url": "https://www2.embedtv.best/bandnews"
+    },
+    {
+      "id": "bandsports",
+      "image": "https://embedtv.best/assets/images/bandsports.png",
+      "name": "Band Sports",
+      "categories": [
+        0,
+        1,
+        5,
+        6
+      ],
+      "url": "https://www2.embedtv.best/bandsports"
+    },
+    {
+      "id": "cancaonova",
+      "image": "https://embedtv.best/assets/images/cancaonova.png",
+      "name": "Canção Nova",
+      "categories": [
+        0,
+        7,
+        6
+      ],
+      "url": "https://www2.embedtv.best/cancaonova"
+    },
+    {
+      "id": "cartoonito",
+      "image": "https://embedtv.best/assets/images/cartoonito.png",
+      "name": "Cartoonito",
+      "categories": [
+        0,
+        2
+      ],
+      "url": "https://www2.embedtv.best/cartoonito"
+    },
+    {
+      "id": "cartoonnetwork",
+      "image": "https://embedtv.best/assets/images/cartoonnetwork.png",
+      "name": "Cartoon Network",
+      "categories": [
+        0,
+        2
+      ],
+      "url": "https://www2.embedtv.best/cartoonnetwork"
+    },
+    {
+      "id": "caze1",
+      "image": "https://embedtv.best/assets/images/cazetv.png",
+      "name": "CazeTV 1",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/caze1"
+    },
+    {
+      "id": "caze2",
+      "image": "https://embedtv.best/assets/images/cazetv.png",
+      "name": "CazeTV 2",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/caze2"
+    },
+    {
+      "id": "caze3",
+      "image": "https://embedtv.best/assets/images/cazetv.png",
+      "name": "CazeTV 3",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/caze3"
+    },
+    {
+      "id": "cinemax",
+      "image": "https://embedtv.best/assets/images/cinemax.png",
+      "name": "Cinemax",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/cinemax"
+    },
+    {
+      "id": "cnnbrasil",
+      "image": "https://embedtv.best/assets/images/cnnbrasil.png",
+      "name": "CNN Brasil",
+      "categories": [
+        0,
+        5,
+        7
+      ],
+      "url": "https://www2.embedtv.best/cnnbrasil"
+    },
+    {
+      "id": "combate",
+      "image": "https://embedtv.best/assets/images/combate.png",
+      "name": "Combate",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/combate"
+    },
+    {
+      "id": "comedycentral",
+      "image": "https://embedtv.best/assets/images/comedycentral.png",
+      "name": "Comedy Central",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/comedycentral"
+    },
+    {
+      "id": "cultura",
+      "image": "https://embedtv.best/assets/images/cultura.png",
+      "name": "Cultura",
+      "categories": [
+        0,
+        6,
+        7
+      ],
+      "url": "https://www2.embedtv.best/cultura"
+    },
+    {
+      "id": "discoverychannel",
+      "image": "https://embedtv.best/assets/images/discoverychannel.png",
+      "name": "Discovery Channel",
+      "categories": [
+        0,
+        3
+      ],
+      "url": "https://www2.embedtv.best/discoverychannel"
+    },
+    {
+      "id": "discoveryhh",
+      "image": "https://embedtv.best/assets/images/discoveryhh.png",
+      "name": "Discovery H&H",
+      "categories": [
+        0,
+        3
+      ],
+      "url": "https://www2.embedtv.best/discoveryhh"
+    },
+    {
+      "id": "discoveryid",
+      "image": "https://embedtv.best/assets/images/discoverychannel.png",
+      "name": "Discovery ID",
+      "categories": [
+        0,
+        3
+      ],
+      "url": "https://www2.embedtv.best/discoveryid"
+    },
+    {
+      "id": "discoverykids",
+      "image": "https://embedtv.best/assets/images/discoverykids.png",
+      "name": "Discovery Kids",
+      "categories": [
+        0,
+        2
+      ],
+      "url": "https://www2.embedtv.best/discoverykids"
+    },
+    {
+      "id": "discoveryscience",
+      "image": "https://embedtv.best/assets/images/discoveryscience.png",
+      "name": "Discovery Science",
+      "categories": [
+        0,
+        3,
+        7
+      ],
+      "url": "https://www2.embedtv.best/discoveryscience"
+    },
+    {
+      "id": "discoverytheather",
+      "image": "https://embedtv.best/assets/images/discoverytheater.png",
+      "name": "Discovery Theater",
+      "categories": [
+        0,
+        3
+      ],
+      "url": "https://www2.embedtv.best/discoverytheather"
+    },
+    {
+      "id": "discoveryturbo",
+      "image": "https://embedtv.best/assets/images/discoveryturbo.png",
+      "name": "Discovery Turbo",
+      "categories": [
+        0,
+        3
+      ],
+      "url": "https://www2.embedtv.best/discoveryturbo"
+    },
+    {
+      "id": "discoveryword",
+      "image": "https://embedtv.best/assets/images/discoveryworld.png",
+      "name": "Discovery World",
+      "categories": [
+        0,
+        3
+      ],
+      "url": "https://www2.embedtv.best/discoveryword"
+    },
+    {
+      "id": "disneyplus1",
+      "image": "https://embedtv.best/assets/images/disneyplus.png",
+      "name": "Disney Plus 1",
+      "categories": [
+        0,
+        1,
+        7
+      ],
+      "url": "https://www2.embedtv.best/disneyplus1"
+    },
+    {
+      "id": "disneyplus2",
+      "image": "https://embedtv.best/assets/images/disneyplus.png",
+      "name": "Disney Plus 2",
+      "categories": [
+        0,
+        1,
+        7
+      ],
+      "url": "https://www2.embedtv.best/disneyplus2"
+    },
+    {
+      "id": "disneyplus3",
+      "image": "https://embedtv.best/assets/images/disneyplus.png",
+      "name": "Disney Plus 3",
+      "categories": [
+        0,
+        1,
+        7
+      ],
+      "url": "https://www2.embedtv.best/disneyplus3"
+    },
+    {
+      "id": "espn",
+      "image": "https://embedtv.best/assets/images/espn.png",
+      "name": "Espn",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/espn"
+    },
+    {
+      "id": "espn2",
+      "image": "https://embedtv.best/assets/images/espn2.png",
+      "name": "Espn 2",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/espn2"
+    },
+    {
+      "id": "espn3",
+      "image": "https://embedtv.best/assets/images/espn3.png",
+      "name": "Espn 3",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/espn3"
+    },
+    {
+      "id": "espn4",
+      "image": "https://embedtv.best/assets/images/espn4.png",
+      "name": "Espn 4",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/espn4"
+    },
+    {
+      "id": "espn5",
+      "image": "https://embedtv.best/assets/images/espn5.png",
+      "name": "Espn 5",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/espn5"
+    },
+    {
+      "id": "espn6",
+      "image": "https://embedtv.best/assets/images/espn6.png",
+      "name": "Espn 6",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/espn6"
+    },
+    {
+      "id": "fish",
+      "image": "https://embedtv.best/assets/images/fishtv.png",
+      "name": "Fish TV",
+      "categories": [
+        0,
+        7,
+        3
+      ],
+      "url": "https://www2.embedtv.best/fish"
+    },
+    {
+      "id": "foodnetwork",
+      "image": "https://embedtv.best/assets/images/foodnetwork.png",
+      "name": "Food Network",
+      "categories": [
+        0,
+        7
+      ],
+      "url": "https://www2.embedtv.best/foodnetwork"
+    },
+    {
+      "id": "globonews",
+      "image": "https://embedtv.best/assets/images/globonews.png",
+      "name": "Globo News",
+      "categories": [
+        0,
+        5,
+        6
+      ],
+      "url": "https://www2.embedtv.best/globonews"
+    },
+    {
+      "id": "globorj",
+      "image": "https://embedtv.best/assets/images/globorj.png",
+      "name": "Globo RJ",
+      "categories": [
+        0,
+        6
+      ],
+      "url": "https://www2.embedtv.best/globorj"
+    },
+    {
+      "id": "globosp",
+      "image": "https://embedtv.best/assets/images/globosp.png",
+      "name": "Globo SP",
+      "categories": [
+        0,
+        6
+      ],
+      "url": "https://www2.embedtv.best/globosp"
+    },
+    {
+      "id": "globomg",
+      "image": "https://embedtv.best/assets/images/globosp.png",
+      "name": "Globo MG",
+      "categories": [
+        0,
+        6
+      ],
+      "url": "https://www2.embedtv.best/globomg"
+    },
+    {
+      "id": "globoam",
+      "image": "https://embedtv.best/assets/images/globosp.png",
+      "name": "Globo AM",
+      "categories": [
+        0,
+        6
+      ],
+      "url": "https://www2.embedtv.best/globoam"
+    },
+    {
+      "id": "globors",
+      "image": "https://embedtv.best/assets/images/globosp.png",
+      "name": "Globo RS",
+      "categories": [
+        0,
+        6
+      ],
+      "url": "https://www2.embedtv.best/globors"
+    },
+    {
+      "id": "gloob",
+      "image": "https://embedtv.best/assets/images/gloob.png",
+      "name": "Gloob",
+      "categories": [
+        0,
+        2
+      ],
+      "url": "https://www2.embedtv.best/gloob"
+    },
+    {
+      "id": "gnt",
+      "image": "https://embedtv.best/assets/images/gnt.png",
+      "name": "GNT",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/gnt"
+    },
+    {
+      "id": "hbo",
+      "image": "https://embedtv.best/assets/images/hbo.png",
+      "name": "HBO",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/hbo"
+    },
+    {
+      "id": "hbo2",
+      "image": "https://embedtv.best/assets/images/hbo2.png",
+      "name": "HBO 2",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/hbo2"
+    },
+    {
+      "id": "hbofamily",
+      "image": "https://embedtv.best/assets/images/hbofamily.png",
+      "name": "HBO Family",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/hbofamily"
+    },
+    {
+      "id": "hbomundi",
+      "image": "https://embedtv.best/assets/images/hbomundi.png",
+      "name": "HBO Mundi",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/hbomundi"
+    },
+    {
+      "id": "hboplus",
+      "image": "https://embedtv.best/assets/images/hboplus.png",
+      "name": "HBO Plus",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/hboplus"
+    },
+    {
+      "id": "hbopop",
+      "image": "https://embedtv.best/assets/images/hbopop.png",
+      "name": "HBO POP",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/hbopop"
+    },
+    {
+      "id": "hboxtreme",
+      "image": "https://embedtv.best/assets/images/hboxtreme.png",
+      "name": "HBO Xtreme",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/hboxtreme"
+    },
+    {
+      "id": "hgtv",
+      "image": "https://embedtv.best/assets/images/hgtv.png",
+      "name": "HGTV",
+      "categories": [
+        0,
+        4,
+        7
+      ],
+      "url": "https://www2.embedtv.best/hgtv"
+    },
+    {
+      "id": "history",
+      "image": "https://embedtv.best/assets/images/history.png",
+      "name": "History",
+      "categories": [
+        0,
+        3
+      ],
+      "url": "https://www2.embedtv.best/history"
+    },
+    {
+      "id": "history2",
+      "image": "https://embedtv.best/assets/images/history2.png",
+      "name": "History 2",
+      "categories": [
+        0,
+        3
+      ],
+      "url": "https://www2.embedtv.best/history2"
+    },
+    {
+      "id": "masterchef",
+      "image": "https://embedtv.best/assets/images/cheftv.png",
+      "name": "Master chef",
+      "categories": [
+        0,
+        7
+      ],
+      "url": "https://www2.embedtv.best/masterchef"
+    },
+    {
+      "id": "max1",
+      "image": "https://embedtv.best/assets/images/max.png",
+      "name": "Max - 1",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/max1"
+    },
+    {
+      "id": "max2",
+      "image": "https://embedtv.best/assets/images/max.png",
+      "name": "Max - 2",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/max2"
+    },
+    {
+      "id": "max3",
+      "image": "https://embedtv.best/assets/images/max.png",
+      "name": "Max - 3",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/max3"
+    },
+    {
+      "id": "megapix",
+      "image": "https://embedtv.best/assets/images/megapix.png",
+      "name": "Megapix",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/megapix"
+    },
+    {
+      "id": "mtv",
+      "image": "https://embedtv.best/assets/images/mtv.png",
+      "name": "MTV",
+      "categories": [
+        0,
+        6,
+        7
+      ],
+      "url": "https://www2.embedtv.best/mtv"
+    },
+    {
+      "id": "multishow",
+      "image": "https://embedtv.best/assets/images/multishow.png",
+      "name": "Multishow",
+      "categories": [
+        0,
+        6,
+        7
+      ],
+      "url": "https://www2.embedtv.best/multishow"
+    },
+    {
+      "id": "nickelodeon",
+      "image": "https://embedtv.best/assets/images/nickelodeon.png",
+      "name": "Nickelodeon",
+      "categories": [
+        0,
+        2
+      ],
+      "url": "https://www2.embedtv.best/nickelodeon"
+    },
+    {
+      "id": "nickjunior",
+      "image": "https://embedtv.best/assets/images/nickjr.png",
+      "name": "Nick Junior",
+      "categories": [
+        0,
+        2
+      ],
+      "url": "https://www2.embedtv.best/nickjunior"
+    },
+    {
+      "id": "off",
+      "image": "https://embedtv.best/assets/images/off.png",
+      "name": "OFF",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/off"
+    },
+    {
+      "id": "paramountchannel",
+      "image": "https://embedtv.best/assets/images/paramountchannel.png",
+      "name": "Paramount",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/paramountchannel"
+    },
+    {
+      "id": "paramountplus",
+      "image": "https://embedtv.best/assets/images/paramountplus.png",
+      "name": "Paramount Plus",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/paramountplus"
+    },
+    {
+      "id": "paramountplus2",
+      "image": "https://embedtv.best/assets/images/paramountplus.png",
+      "name": "Paramount Plus 2",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/paramountplus2"
+    },
+    {
+      "id": "playboy",
+      "image": "https://embedtv.best/assets/images/playboy.png",
+      "name": "Play Boy",
+      "categories": [
+        0
+      ],
+      "url": "https://www2.embedtv.best/playboy"
+    },
+    {
+      "id": "premiere",
+      "image": "https://embedtv.best/assets/images/premiere.png",
+      "name": "Premiere 1",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/premiere"
+    },
+    {
+      "id": "premiere2",
+      "image": "https://embedtv.best/assets/images/premiere.png",
+      "name": "Premiere 2",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/premiere2"
+    },
+    {
+      "id": "premiere3",
+      "image": "https://embedtv.best/assets/images/premiere.png",
+      "name": "Premiere 3",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/premiere3"
+    },
+    {
+      "id": "premiere4",
+      "image": "https://embedtv.best/assets/images/premiere.png",
+      "name": "Premiere 4",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/premiere4"
+    },
+    {
+      "id": "premiere5",
+      "image": "https://embedtv.best/assets/images/premiere.png",
+      "name": "Premiere 5",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/premiere5"
+    },
+    {
+      "id": "premiere6",
+      "image": "https://embedtv.best/assets/images/premiere.png",
+      "name": "Premiere 6",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/premiere6"
+    },
+    {
+      "id": "premiere7",
+      "image": "https://embedtv.best/assets/images/premiere.png",
+      "name": "Premiere 7",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/premiere7"
+    },
+    {
+      "id": "premiere8",
+      "image": "https://embedtv.best/assets/images/premiere.png",
+      "name": "Premiere 8",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/premiere8"
+    },
+    {
+      "id": "primevideo",
+      "image": "https://embedtv.best/assets/images/primevideo.png",
+      "name": "Prime Video",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/primevideo"
+    },
+    {
+      "id": "primevideo2",
+      "image": "https://embedtv.best/assets/images/primevideo.png",
+      "name": "Prime Video 2",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/primevideo2"
+    },
+    {
+      "id": "record",
+      "image": "https://embedtv.best/assets/images/record.png",
+      "name": "Record",
+      "categories": [
+        0,
+        6,
+        5,
+        7
+      ],
+      "url": "https://www2.embedtv.best/record"
+    },
+    {
+      "id": "sbt",
+      "image": "https://embedtv.best/assets/images/sbt.png",
+      "name": "SBT Central",
+      "categories": [
+        0,
+        5,
+        6,
+        7
+      ],
+      "url": "https://www2.embedtv.best/sbt"
+    },
+    {
+      "id": "sexyhot",
+      "image": "https://embedtv.best/assets/images/Sexy.png",
+      "name": "Sexy Hot",
+      "categories": [
+        0
+      ],
+      "url": "https://www2.embedtv.best/sexyhot"
+    },
+    {
+      "id": "sonychannel",
+      "image": "https://embedtv.best/assets/images/sonychannel.png",
+      "name": "Sony Channel",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/sonychannel"
+    },
+    {
+      "id": "space",
+      "image": "https://embedtv.best/assets/images/space.png",
+      "name": "Space",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/space"
+    },
+    {
+      "id": "sportv",
+      "image": "https://embedtv.best/assets/images/sportv.png",
+      "name": "Sportv",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/sportv"
+    },
+    {
+      "id": "sportv2",
+      "image": "https://embedtv.best/assets/images/sportv2.png",
+      "name": "Sportv 2",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/sportv2"
+    },
+    {
+      "id": "sportv3",
+      "image": "https://embedtv.best/assets/images/sportv3.png",
+      "name": "Sportv 3",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/sportv3"
+    },
+    {
+      "id": "sportv4",
+      "image": "https://embedtv.best/assets/images/sportv4.png",
+      "name": "Sportv 4",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/sportv4"
+    },
+    {
+      "id": "starchannel",
+      "image": "https://embedtv.best/assets/images/starchannel.png",
+      "name": "Star Channel",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/starchannel"
+    },
+    {
+      "id": "studiouniversal",
+      "image": "https://embedtv.best/assets/images/studiouniversal.png",
+      "name": "Studio Universal",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/studiouniversal"
+    },
+    {
+      "id": "tcm",
+      "image": "https://embedtv.best/assets/images/tcm.png",
+      "name": "TCM",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/tcm"
+    },
+    {
+      "id": "telecineaction",
+      "image": "https://embedtv.best/assets/images/telecineaction.png",
+      "name": "Telecine Action",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/telecineaction"
+    },
+    {
+      "id": "telecinecult",
+      "image": "https://embedtv.best/assets/images/telecinecult.png",
+      "name": "Telecine Cult",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/telecinecult"
+    },
+    {
+      "id": "telecinefun",
+      "image": "https://embedtv.best/assets/images/telecinefun.png",
+      "name": "Telecine Fun",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/telecinefun"
+    },
+    {
+      "id": "telecinepipoca",
+      "image": "https://embedtv.best/assets/images/telecinepipoca.png",
+      "name": "Telecine Pipoca",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/telecinepipoca"
+    },
+    {
+      "id": "telecinepremium",
+      "image": "https://embedtv.best/assets/images/telecinepremium.png",
+      "name": "Telecine Premium",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/telecinepremium"
+    },
+    {
+      "id": "telecinetouch",
+      "image": "https://embedtv.best/assets/images/telecinetouch.png",
+      "name": "Telecine Touch",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/telecinetouch"
+    },
+    {
+      "id": "tlc",
+      "image": "https://embedtv.best/assets/images/tlc.png",
+      "name": "TLC",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/tlc"
+    },
+    {
+      "id": "tnt",
+      "image": "https://embedtv.best/assets/images/tnt.png",
+      "name": "TNT",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/tnt"
+    },
+    {
+      "id": "tntnovelas",
+      "image": "https://embedtv.best/assets/images/tntnovelas.png",
+      "name": "TNT Novelas",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/tntnovelas"
+    },
+    {
+      "id": "tntseries",
+      "image": "https://embedtv.best/assets/images/tntseries.png",
+      "name": "TNT Series",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/tntseries"
+    },
+    {
+      "id": "ufcfightpass",
+      "image": "https://embedtv.best/assets/images/ufcfightpass.png",
+      "name": "UFC Fight Pass",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/ufcfightpass"
+    },
+    {
+      "id": "universaltv",
+      "image": "https://embedtv.best/assets/images/universaltv.png",
+      "name": "Universal",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/universaltv"
+    },
+    {
+      "id": "viva",
+      "image": "https://embedtv.best/assets/images/viva.png",
+      "name": "VIVA",
+      "categories": [
+        0,
+        6,
+        7
+      ],
+      "url": "https://www2.embedtv.best/viva"
+    },
+    {
+      "id": "warnerchannel",
+      "image": "https://embedtv.best/assets/images/warnerchannel.png",
+      "name": "Warnerchannel",
+      "categories": [
+        0,
+        4
+      ],
+      "url": "https://www2.embedtv.best/warnerchannel"
+    },
+    {
+      "id": "pt_eleven1",
+      "image": "https://embedtv.best/assets/images/eleven.png",
+      "name": "PT - Eleven 1",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/pt_eleven1"
+    },
+    {
+      "id": "pt_eleven2",
+      "image": "https://embedtv.best/assets/images/eleven.png",
+      "name": "PT - Eleven 2",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/pt_eleven2"
+    },
+    {
+      "id": "pt_eleven3",
+      "image": "https://embedtv.best/assets/images/eleven.png",
+      "name": "PT - Eleven 3",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/pt_eleven3"
+    },
+    {
+      "id": "pt_sportv1",
+      "image": "https://embedtv.best/assets/images/sportv.png",
+      "name": "PT - Sporttv 1",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/pt_sportv1"
+    },
+    {
+      "id": "pt_sportv2",
+      "image": "https://embedtv.best/assets/images/sportv.png",
+      "name": "PT - Sporttv 2",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/pt_sportv2"
+    },
+    {
+      "id": "pt_sportv3",
+      "image": "https://embedtv.best/assets/images/sportv.png",
+      "name": "PT - Sporttv 3",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/pt_sportv3"
+    },
+    {
+      "id": "pt_sportv4",
+      "image": "https://embedtv.best/assets/images/sportv.png",
+      "name": "PT - Sporttv 4",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/pt_sportv4"
+    },
+    {
+      "id": "pt_sportv5",
+      "image": "https://embedtv.best/assets/images/sportv.png",
+      "name": "PT - Sporttv 5",
+      "categories": [
+        0,
+        1
+      ],
+      "url": "https://www2.embedtv.best/pt_sportv5"
+    }
+  ]
+}

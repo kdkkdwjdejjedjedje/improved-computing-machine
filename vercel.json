@@ -1,0 +1,58 @@
+{
+  "rewrites": [
+    {
+      "source": "/canais",
+      "destination": "/canais.html"
+    },
+    {
+      "source": "/canais/",
+      "destination": "/canais.html"
+    },
+    {
+      "source": "/bbb",
+      "destination": "/bbb.html"
+    },
+    {
+      "source": "/bbb/",
+      "destination": "/bbb.html"
+    },
+    {
+      "source": "/blog",
+      "destination": "/blog/index.html"
+    },
+    {
+      "source": "/blog/",
+      "destination": "/blog/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store, no-cache, must-revalidate, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        }
+      ]
+    }
+  ],
+  "trailingSlash": false,
+  "cleanUrls": true
+}

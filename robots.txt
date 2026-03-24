@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Bloqueia arquivos internos desnecessários para indexação
+Disallow: /assets/gerador_canais.js
+
+# Sitemap
+Sitemap: https://piratetv.cfd/sitemap.xml
