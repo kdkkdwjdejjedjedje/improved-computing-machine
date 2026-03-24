@@ -11,17 +11,32 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
+:root{
+  --primary:#dc2626;
+  --primary-hover:#b91c1c;
+  --bg:#0c0c0c;
+  --bg-card:rgba(20,18,18,.92);
+  --text:#f1f1f1;
+  --text-muted:#8a8a96;
+  --border:rgba(220,38,38,.16);
+  --accent:#dc2626;
+}
+
 body{
-  font-family:Arial, sans-serif;
-  background:linear-gradient(180deg,#0a0b1e,#05060f);
-  color:#fff;
+  font-family:'Inter','Segoe UI',Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  background-image:
+    radial-gradient(ellipse at 20% 0%,rgba(180,20,20,.07) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 100%,rgba(180,20,20,.05) 0%,transparent 50%);
 }
 
 /* HEADER */
 header{
-  background:rgba(15,17,40,.95);
+  background:rgba(12,12,12,.92);
   backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(255,255,255,.05);
+  border-bottom:1px solid var(--border);
 }
 .header-inner{
   max-width:1200px;
@@ -32,12 +47,13 @@ header{
   align-items:center;
 }
 nav a{
-  color:#aaa;
+  color:var(--text-muted);
   margin-left:20px;
   text-decoration:none;
   font-weight:600;
+  transition:color .2s ease;
 }
-nav a:hover,.active{color:#00e0ff}
+nav a:hover,.active{color:var(--accent)}
 
 /* CONTAINER */
 .container{
@@ -49,6 +65,7 @@ nav a:hover,.active{color:#00e0ff}
 .home-canais-title{
   text-align:center;
   margin-bottom:20px;
+  color:var(--text);
 }
 
 /* SEARCH */
@@ -56,10 +73,15 @@ nav a:hover,.active{color:#00e0ff}
   width:100%;
   padding:14px;
   border-radius:10px;
-  border:none;
+  border:1px solid var(--border);
   margin-bottom:20px;
-  background:#14162e;
-  color:#fff;
+  background:var(--bg-card);
+  color:var(--text);
+  outline:none;
+}
+#search-canais:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(220,38,38,.2);
 }
 
 /* GRID */
@@ -71,16 +93,17 @@ nav a:hover,.active{color:#00e0ff}
 
 /* CARD */
 .channel-card{
-  background:#14162e;
+  background:var(--bg-card);
   border-radius:12px;
   overflow:hidden;
   transition:.25s;
   cursor:pointer;
-  border:1px solid rgba(255,255,255,.05);
+  border:1px solid var(--border);
 }
 .channel-card:hover{
   transform:translateY(-6px) scale(1.02);
-  background:#1c1f44;
+  background:rgba(34,20,20,.95);
+  border-color:rgba(220,38,38,.45);
 }
 .channel-card img{
   width:100%;
@@ -91,29 +114,53 @@ nav a:hover,.active{color:#00e0ff}
   padding:10px;
   font-size:14px;
   text-align:center;
-  color:#ddd;
+  color:var(--text);
 }
 
 /* SEO BOX */
 .seo-content{
-  background:#11132b;
+  background:var(--bg-card);
   padding:20px;
   border-radius:12px;
   margin-top:30px;
-  color:#aaa;
+  color:var(--text-muted);
+  border:1px solid var(--border);
+}
+.seo-content h2,
+.seo-content h3,
+.seo-content h4{
+  color:var(--text);
+  margin:16px 0 10px;
+}
+.seo-content h2{margin-top:0}
+.seo-content p,
+.seo-content ul{
+  line-height:1.7;
+  margin-bottom:14px;
+}
+.seo-content ul{padding-left:20px}
+.seo-content a{
+  color:var(--accent);
+  text-decoration:none;
+}
+.seo-content a:hover{text-decoration:underline}
+
+.seo-content strong{
+  color:#fff;
 }
 
 /* FOOTER */
 footer{
   margin-top:40px;
-  background:#0f1128;
+  background:rgba(12,12,12,.92);
+  border-top:1px solid var(--border);
 }
 .footer-inner{
   max-width:1200px;
   margin:auto;
   padding:20px;
   text-align:center;
-  color:#888;
+  color:var(--text-muted);
 }
 </style>
 
@@ -147,9 +194,79 @@ footer{
 
   <!-- SEO -->
   <article class="seo-content">
-    <h2>Canais de TV Online Grátis</h2>
+    <h2>PirateTV – TV Online Grátis, Futebol Ao Vivo, Filmes e Canais em HD</h2>
+
     <p>
-      Assista canais ao vivo gratuitamente, sem cadastro e em alta qualidade.
+      O <strong><a href="https://piratetv.cfd/" rel="noopener noreferrer">PirateTV</a></strong> é uma das melhores opções para quem deseja <strong>assistir TV online grátis</strong> com qualidade HD, estabilidade e acesso rápido.
+      A plataforma reúne <strong>canais ao vivo</strong>, esportes, filmes, séries e reality shows em um só lugar, sem necessidade de cadastro ou pagamento.
+    </p>
+
+    <p>
+      Com navegação simples e carregamento rápido, o <strong>PirateTV</strong> permite acessar transmissões em tempo real de forma prática em qualquer dispositivo, seja celular, computador ou Smart TV.
+    </p>
+
+    <h3>Assistir Futebol Ao Vivo Online no PirateTV</h3>
+
+    <p>
+      O grande destaque do <strong>PirateTV</strong> é a transmissão de <strong>futebol ao vivo online</strong> com qualidade HD e múltiplos players.
+      Você pode acompanhar jogos em tempo real com estabilidade e mínimo atraso.
+    </p>
+
+    <ul>
+      <li>Transmissões em HD e Full HD</li>
+      <li>Jogos ao vivo atualizados diariamente</li>
+      <li>Múltiplos players disponíveis</li>
+      <li>Streaming rápido e sem travamentos</li>
+      <li>Compatível com todos os dispositivos</li>
+    </ul>
+
+    <h3>Principais Campeonatos e Eventos Ao Vivo</h3>
+
+    <p>
+      No <strong>PirateTV</strong>, você acompanha os maiores campeonatos do mundo com acesso rápido aos jogos mais importantes do dia.
+    </p>
+
+    <ul>
+      <li>Champions League</li>
+      <li>Libertadores</li>
+      <li>Brasileirão</li>
+      <li>Premier League</li>
+      <li>La Liga</li>
+      <li>NBA e UFC</li>
+      <li>Fórmula 1</li>
+    </ul>
+
+    <h3>Canais de TV, Filmes e Séries Online</h3>
+
+    <p>
+      Além dos esportes, o <strong>PirateTV</strong> oferece diversos <strong>canais de TV online</strong>, incluindo filmes, séries e conteúdos ao vivo 24 horas por dia.
+    </p>
+
+    <p>
+      Também é possível acompanhar programas populares como
+      <a href="/bbb.html" title="BBB 26 ao vivo">BBB 26 ao vivo</a>
+      com transmissão contínua e qualidade estável.
+    </p>
+
+    <h3>Por Que o PirateTV é Destaque?</h3>
+
+    <ul>
+      <li><strong>100% gratuito</strong> e sem cadastro</li>
+      <li><strong>Interface simples</strong> e fácil de usar</li>
+      <li><strong>Alta disponibilidade</strong> de canais</li>
+      <li><strong>Atualizações constantes</strong></li>
+      <li><strong>Streaming otimizado</strong></li>
+    </ul>
+
+    <h4>Dicas para Melhor Experiência</h4>
+
+    <p>
+      Para assistir sem travamentos no <strong>PirateTV</strong>, utilize uma conexão de pelo menos 10Mbps.
+      Se algum player não carregar, basta alternar entre as opções disponíveis.
+    </p>
+
+    <p>
+      Adicione o <strong>PirateTV</strong> aos favoritos para acessar rapidamente sempre que quiser assistir TV online, futebol ao vivo e conteúdos em tempo real.
     </p>
   </article>
 
@@ -157,7 +274,8 @@ footer{
 
 <footer>
   <div class="footer-inner">
-Pirate TV é a sua plataforma para assistir futebol ao vivo e outros esportes online.
+Pirate TV é a sua plataforma para assistir futebol ao vivo e outros esportes online.<br>
+Transmissões em HD, grátis e sem necessidade de assinatura.
   </div>
 </footer>
 
