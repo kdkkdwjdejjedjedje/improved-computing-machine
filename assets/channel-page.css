@@ -1,161 +1,131 @@
 :root {
-  --radius-lg: 24px;
-  --radius-md: 18px;
-  --radius-sm: 12px;
-
-  --space-xs: 6px;
-  --space-sm: 10px;
-  --space-md: 16px;
-  --space-lg: 24px;
-  --space-xl: 34px;
+  --radius: 16px;
+  --space: 16px;
 }
 
 /* Base */
 body.channel-page {
   background:
-    radial-gradient(ellipse at top, rgba(220, 38, 38, 0.08) 0%, transparent 42%),
-    linear-gradient(180deg, #0a0a0a 0%, #0d0d0d 100%);
+    radial-gradient(ellipse at top, rgba(220, 38, 38, 0.08), transparent 42%),
+    #0a0a0a;
   color: var(--text);
-  line-height: 1.6;
 }
 
-/* Header */
+/* HEADER */
 .channel-page > header {
   position: sticky;
   top: 0;
-  z-index: 40;
-  background: rgba(10, 10, 10, 0.86);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(14px);
+  z-index: 50;
+  background: rgba(10,10,10,0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-.channel-page .header-inner {
-  max-width: 1160px;
+/* LAYOUT PRINCIPAL */
+.channel-page .app-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 24px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: var(--space-md) var(--space-lg);
+  padding: 20px;
+}
+
+/* PLAYER (FOCO TOTAL) */
+.channel-page .player-section {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-md);
+  flex-direction: column;
+  gap: 16px;
 }
 
-.channel-page .header-logo-img {
-  height: clamp(38px, 5vw, 46px);
-  filter: drop-shadow(0 0 10px rgba(220, 38, 38, 0.18));
-}
-
-/* Nav */
-.channel-page nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.channel-page nav a {
-  color: var(--text-muted);
-  font-size: clamp(0.82rem, 1vw, 0.92rem);
-  font-weight: 600;
-  padding: 7px 12px;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  transition: all 0.2s ease;
-}
-
-.channel-page nav a:hover {
-  color: var(--text);
-  background: rgba(220, 38, 38, 0.08);
-  border-color: rgba(220, 38, 38, 0.18);
-}
-
-/* Container */
-.channel-page > .container {
-  max-width: 1160px;
-  margin: 0 auto;
-  padding: clamp(20px, 4vw, 34px) clamp(14px, 4vw, 20px);
-}
-
-/* Card */
-.channel-page .card {
-  background: linear-gradient(180deg, rgba(24, 24, 24, 0.96), rgba(16, 16, 16, 0.98));
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: var(--radius-lg);
-  padding: clamp(20px, 4vw, 36px);
-  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.38);
-}
-
-/* Logo card */
-.channel-page .card > img:first-child {
-  width: clamp(70px, 18vw, 96px);
-  height: clamp(70px, 18vw, 96px);
-  margin: 0 auto var(--space-md);
-  padding: 10px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 0 26px rgba(220, 38, 38, 0.12);
-}
-
-/* Title */
-.channel-page h1 {
-  text-align: center;
-  font-size: clamp(1.5rem, 3vw, 2.3rem);
-  margin-bottom: 8px;
-  letter-spacing: -0.02em;
-}
-
-/* Badges */
-.channel-page .badges-row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: var(--space-md);
-}
-
-.channel-page .badge {
-  padding: 5px 10px;
-  border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  background: rgba(220, 38, 38, 0.08);
-  color: #ff7b7b;
-  border: 1px solid rgba(220, 38, 38, 0.22);
-}
-
-/* Text */
-.channel-page p {
-  color: #b3b3bc;
-  font-size: clamp(0.9rem, 1vw, 0.97rem);
-  line-height: 1.75;
-}
-
-.channel-page strong {
-  color: var(--text);
-}
-
-.channel-page em {
-  color: #8f8f9a;
-}
-
-/* Player (melhorado MUITO aqui) */
 .channel-page .channel-player-wrap {
-  margin: var(--space-xl) 0;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius);
   overflow: hidden;
-  background: #050505;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #000;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
 }
 
-/* Aspect ratio moderno */
 .channel-page iframe {
   width: 100%;
   aspect-ratio: 16 / 9;
   border: 0;
-  background: #000;
 }
 
-/* Links */
+/* TÍTULO + INFO */
+.channel-page .video-info {
+  padding: 4px 4px;
+}
+
+.channel-page .video-info h1 {
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  margin-bottom: 6px;
+}
+
+.channel-page .badges-row {
+  justify-content: flex-start;
+}
+
+/* DESCRIÇÃO */
+.channel-page .description {
+  font-size: 0.95rem;
+  color: #b3b3bc;
+  line-height: 1.7;
+}
+
+/* SIDEBAR (tipo recomendações) */
+.channel-page .sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* CARD DE SUGESTÃO */
+.channel-page .suggestion {
+  display: flex;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.channel-page .suggestion:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+.channel-page .suggestion img {
+  width: 140px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.channel-page .suggestion .meta {
+  flex: 1;
+}
+
+.channel-page .suggestion .meta h4 {
+  font-size: 0.85rem;
+  margin: 0 0 4px;
+  color: var(--text);
+}
+
+.channel-page .suggestion .meta span {
+  font-size: 0.75rem;
+  color: #8f8f9a;
+}
+
+/* BADGES */
+.channel-page .badge {
+  background: rgba(220, 38, 38, 0.08);
+  color: #ff7b7b;
+  border: 1px solid rgba(220, 38, 38, 0.22);
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+}
+
+/* LINKS */
 .channel-page a {
   color: var(--primary);
   text-decoration: none;
@@ -165,60 +135,34 @@ body.channel-page {
   text-decoration: underline;
 }
 
-/* Footer */
-.channel-page .footer-top {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  justify-content: space-between;
-}
-
-.channel-page .footer-col h4 {
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.44);
-}
-
-.channel-page .footer-col a {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-
-.channel-page .footer-col a:hover {
-  color: var(--text);
-}
-
-.channel-page .footer-bottom {
-  margin-top: var(--space-md);
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.3);
-}
-
-/* Mobile refinado */
-@media (max-width: 768px) {
-  .channel-page .header-inner {
-    justify-content: center;
-    text-align: center;
+/* MOBILE (vira app feed) */
+@media (max-width: 900px) {
+  .channel-page .app-layout {
+    grid-template-columns: 1fr;
+    padding: 14px;
   }
 
-  .channel-page nav {
-    justify-content: center;
-  }
-
-  .channel-page .card {
-    border-radius: var(--radius-md);
-  }
-}
-
-@media (max-width: 480px) {
-  .channel-page nav a {
-    font-size: 0.8rem;
-    padding: 6px 10px;
-  }
-
-  .channel-page .footer-top {
+  .channel-page .sidebar {
     flex-direction: column;
+  }
+
+  .channel-page .suggestion {
+    padding: 6px;
+  }
+
+  .channel-page .suggestion img {
+    width: 120px;
+    height: 70px;
+  }
+}
+
+/* MOBILE PEQUENO */
+@media (max-width: 500px) {
+  .channel-page iframe {
+    aspect-ratio: 16 / 10;
+  }
+
+  .channel-page .video-info h1 {
+    font-size: 1.2rem;
   }
 }
