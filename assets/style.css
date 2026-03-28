@@ -526,6 +526,8 @@ body {
 
 .card ul li {
   margin-bottom: 6px;
+  color: var(--red);
+  font-weight: 500;
 }
 
 .card a {
