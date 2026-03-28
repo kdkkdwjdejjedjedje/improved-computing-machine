@@ -1,4 +1,4 @@
-// Carrega canais do canais.json e lista no canais.html
+﻿// Carrega canais do canais.json e lista no canais.html
 // Suporte ao novo formato {categories, channels} e ao formato antigo (array)
 fetch('canais.json')
   .then(res => res.json())
@@ -73,3 +73,4 @@ fetch('canais.json')
 
     renderGrid();
   });
+

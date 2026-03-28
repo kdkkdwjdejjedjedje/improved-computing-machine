@@ -1,4 +1,4 @@
-# Auditoria SEO Checklist - PirateTV Redesign
+﻿# Auditoria SEO Checklist - Pirate TV Redesign
 
 ## 🟢 1. Meta Tags e Títulos
 - [x] **Title Tag**: Otimizado com menos de 60 caracteres, iniciando com a keyword "piratetv".
@@ -31,3 +31,5 @@
 - [x] **Canonical**: Tag link canonical configurada para evitar conteúdo duplicado.
 - [x] **Robots.txt**: Verificado (existente no root).
 - [x] **Sitemap.xml**: Verificado (existente no root).
+
+

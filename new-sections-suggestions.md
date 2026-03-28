@@ -1,4 +1,4 @@
-# Sugestões de Novas Seções - PirateTV Redesign
+﻿# Sugestões de Novas Seções - Pirate TV Redesign
 
 ## 🟢 1. Página de Categorias Detalhada
 - **Objetivo**: Melhorar a navegação e o SEO por nicho (Esportes, Filmes, Notícias, etc.).
@@ -26,3 +26,5 @@
 ## 🟢 6. Newsletter / Alertas Push
 - **Objetivo**: Notificar o usuário sobre novos canais ou grandes eventos ao vivo.
 - **Recursos**: Integração com OneSignal (Push) ou Mailchimp (Email).
+
+

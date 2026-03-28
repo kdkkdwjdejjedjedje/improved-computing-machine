@@ -1,4 +1,4 @@
-# Style Guide - PirateTV Redesign
+﻿# Style Guide - Pirate TV Redesign
 
 ## 🎨 Paleta de Cores
 - **Fundo Primário**: `#0a0b1e` (Azul Marinho Profundo)
@@ -26,7 +26,9 @@
 - **Cards**: Layout de grid responsivo com gap de 24px.
 
 ## 🏷️ Hierarquia Semântica (SEO)
-- **H1**: Título único por página (Ex: PirateTV - Assistir TV Online Grátis).
+- **H1**: Título único por página (Ex: Pirate TV - Assistir TV Online Grátis).
 - **H2**: Seções principais (Ex: Canais de TV Ao Vivo).
 - **H3**: Subseções (Ex: Esportes, Filmes, Notícias).
 - **H4/H5**: Títulos de cards ou elementos menores.
+
+

@@ -1,4 +1,4 @@
-// Node.js script para gerar páginas dos canais e sitemap.xml
+﻿// Node.js script para gerar páginas dos canais e sitemap.xml
 // Compatível com o novo formato canais.json (embedtv.best)
 const fs = require('fs');
 const path = require('path');
@@ -78,15 +78,15 @@ canais.forEach(canal => {
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 
   <!-- ══ SEO PRIMARY ══ -->
-  <title>Assistir ${nome} ao Vivo Grátis HD 2026 | Pirate TV — PirateTV</title>
-  <meta name='description' content='Assista ${nome} ao vivo grátis e em HD no PirateTV. ${descExtra}sem cadastro, sem burocracia, 100% grátis. ${catsLabel ? 'Categoria: ' + catsLabel + '.' : ''} Acesse agora e aproveite a transmissão ao vivo!'>
-  <meta name='keywords' content='${nome} ao vivo, assistir ${nome} grátis, ${nome} online, ${catKeywords}${nome} HD, ${nome} sem cadastro, Pirate TV, pirate tv online, pirate tv grátis, TV online grátis, PirateTV, streaming grátis brasil, canais ao vivo 2026'>
-  <meta name='author' content='PirateTV'>
+  <title>Assistir ${nome} ao Vivo Grátis HD 2026 | Pirate TV — Pirate TV</title>
+  <meta name='description' content='Assista ${nome} ao vivo grátis e em HD no Pirate TV. ${descExtra}sem cadastro, sem burocracia, 100% grátis. ${catsLabel ? 'Categoria: ' + catsLabel + '.' : ''} Acesse agora e aproveite a transmissão ao vivo!'>
+  <meta name='keywords' content='${nome} ao vivo, assistir ${nome} grátis, ${nome} online, ${catKeywords}${nome} HD, ${nome} sem cadastro, Pirate TV, pirate tv online, pirate tv grátis, TV online grátis, Pirate TV, streaming grátis brasil, canais ao vivo 2026'>
+  <meta name='author' content='Pirate TV'>
   <meta name='language' content='pt-BR'>
   <meta name='revisit-after' content='1 days'>
   <meta name='rating' content='general'>
   <meta name='theme-color' content='#0f0f1a'>
-  <meta name='application-name' content='PirateTV'>
+  <meta name='application-name' content='Pirate TV'>
 
   <!-- ══ GEO ══ -->
   <meta name='geo.region' content='BR'>
@@ -115,20 +115,20 @@ canais.forEach(canal => {
 
   <!-- ══ OPEN GRAPH ══ -->
   <meta property='og:type' content='website'>
-  <meta property='og:site_name' content='PirateTV'>
+  <meta property='og:site_name' content='Pirate TV'>
   <meta property='og:url' content='${dominio}/canais/${id}.html'>
-  <meta property='og:title' content='Assistir ${nome} ao Vivo Grátis HD 2026 | PirateTV'>
-  <meta property='og:description' content='Assista ${nome} ao vivo grátis e em HD no PirateTV. Sem cadastro, 100% grátis!'>
+  <meta property='og:title' content='Assistir ${nome} ao Vivo Grátis HD 2026 | Pirate TV'>
+  <meta property='og:description' content='Assista ${nome} ao vivo grátis e em HD no Pirate TV. Sem cadastro, 100% grátis!'>
   <meta property='og:image' content='${logo}'>
-  <meta property='og:image:alt' content='${nome} ao Vivo — PirateTV'>
+  <meta property='og:image:alt' content='${nome} ao Vivo — Pirate TV'>
   <meta property='og:locale' content='pt_BR'>
 
   <!-- ══ TWITTER CARD ══ -->
   <meta name='twitter:card' content='summary_large_image'>
-  <meta name='twitter:title' content='Assistir ${nome} ao Vivo Grátis HD 2026 | PirateTV'>
-  <meta name='twitter:description' content='Assista ${nome} ao vivo grátis e em HD no PirateTV. Sem cadastro, 100% grátis!'>
+  <meta name='twitter:title' content='Assistir ${nome} ao Vivo Grátis HD 2026 | Pirate TV'>
+  <meta name='twitter:description' content='Assista ${nome} ao vivo grátis e em HD no Pirate TV. Sem cadastro, 100% grátis!'>
   <meta name='twitter:image' content='${logo}'>
-  <meta name='twitter:image:alt' content='${nome} ao Vivo — PirateTV'>
+  <meta name='twitter:image:alt' content='${nome} ao Vivo — Pirate TV'>
 
   <!-- ══ SCHEMA.ORG ══ -->
   <script type='application/ld+json'>
@@ -139,12 +139,12 @@ canais.forEach(canal => {
         "@type": "WebPage",
         "@id": "${dominio}/canais/${id}.html#webpage",
         "url": "${dominio}/canais/${id}.html",
-        "name": "Assistir ${nome} ao Vivo Grátis HD 2026 | PirateTV",
-        "description": "Assista ${nome} ao vivo grátis e em HD no PirateTV. Sem cadastro, 100% grátis.",
+        "name": "Assistir ${nome} ao Vivo Grátis HD 2026 | Pirate TV",
+        "description": "Assista ${nome} ao vivo grátis e em HD no Pirate TV. Sem cadastro, 100% grátis.",
         "isPartOf": {
           "@type": "WebSite",
           "@id": "${dominio}/#website",
-          "name": "PirateTV",
+          "name": "Pirate TV",
           "alternateName": "Pirate TV",
           "url": "${dominio}/"
         },
@@ -164,7 +164,7 @@ canais.forEach(canal => {
       {
         "@type": "BroadcastService",
         "name": "${nome}",
-        "description": "Assista ${nome} ao vivo grátis no PirateTV. Transmissão contínua em HD.",
+        "description": "Assista ${nome} ao vivo grátis no Pirate TV. Transmissão contínua em HD.",
         "broadcastDisplayName": "${nome}",
         "inLanguage": "pt-BR",
         "broadcastTimezone": "America/Sao_Paulo",
@@ -210,7 +210,7 @@ canais.forEach(canal => {
   <header>
     <div class='header-inner'>
       <a href='/' class='header-logo-link'>
-        <img src='../piratetv.png' alt='PirateTV - TV Online Grátis' class='header-logo-img'>
+        <img src='../piratetv.png' alt='Pirate TV - TV Online Grátis' class='header-logo-img'>
       </a>
       <nav>
         <a href='/'>Início</a>
@@ -224,8 +224,8 @@ canais.forEach(canal => {
       <h1>Assistir ${nome} ao Vivo Grátis</h1>
       ${catsBadges ? `<div class="badges-row">${catsBadges}</div>` : ''}
       <p>
-        Assista <strong>${nome}</strong> ao vivo e grátis no PirateTV, sem precisar de cadastro ou pagamento. Transmissão ${descExtra ? descExtra.replace(/, $/, '') + ', ' : ''}em qualidade HD, disponível 24 horas por dia.<br><br>
-        <strong>Por que assistir ${nome} no PirateTV?</strong><br>
+        Assista <strong>${nome}</strong> ao vivo e grátis no Pirate TV, sem precisar de cadastro ou pagamento. Transmissão ${descExtra ? descExtra.replace(/, $/, '') + ', ' : ''}em qualidade HD, disponível 24 horas por dia.<br><br>
+        <strong>Por que assistir ${nome} no Pirate TV?</strong><br>
         — Transmissão estável em HD<br>
         — 100% grátis, sem cadastro<br>
         — Compatível com celular, tablet, PC e Smart TV<br>
@@ -233,10 +233,10 @@ canais.forEach(canal => {
         — Sem instalação de aplicativos<br><br>
         <strong>Como assistir ${nome} online grátis?</strong><br>
         Clique no player abaixo e assista <strong>${nome} ao vivo</strong> agora mesmo, direto no navegador.<br><br>
-        <em>Palavras-chave: ${nome} ao vivo, assistir ${nome} grátis, ${nome} online HD, PirateTV, TV online grátis 2026${catsLabel ? ', ' + catsLabel.toLowerCase() : ''}.</em>
+        <em>Palavras-chave: ${nome} ao vivo, assistir ${nome} grátis, ${nome} online HD, Pirate TV, TV online grátis 2026${catsLabel ? ', ' + catsLabel.toLowerCase() : ''}.</em>
       </p>
       <div class='channel-player-wrap'>
-        <iframe src='${stream}' width='100%' height='480' frameborder='0' allowfullscreen title='Assistir ${nome} ao vivo grátis — PirateTV' loading='lazy'></iframe>
+        <iframe src='${stream}' width='100%' height='480' frameborder='0' allowfullscreen title='Assistir ${nome} ao vivo grátis — Pirate TV' loading='lazy'></iframe>
       </div>
       <p>
         <a href='/canais'>← Ver todos os canais ao vivo</a>
@@ -271,7 +271,7 @@ canais.forEach(canal => {
 
       <div class='footer-divider'></div>
       <div class='footer-bottom'>
-        <a href='/'>PirateTV</a> &copy; 2026 &mdash; Todos os direitos reservados.
+        <a href='/'>Pirate TV</a> &copy; 2026 &mdash; Todos os direitos reservados.
       </div>
     </div>
   </footer>
@@ -293,3 +293,4 @@ sitemap.forEach(item => {
 sitemapXml += `</urlset>\n`;
 fs.writeFileSync(path.join(__dirname, '../sitemap.xml'), sitemapXml, 'utf8');
 console.log(`✅ ${canais.length} páginas de canais e sitemap.xml gerados com sucesso!`);
+
