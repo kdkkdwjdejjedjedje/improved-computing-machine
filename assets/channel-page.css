@@ -1,13 +1,18 @@
 :root {
   --cp-radius: 18px;
+  --cp-surface: rgba(10, 16, 28, 0.94);
+  --cp-surface-soft: rgba(255, 255, 255, 0.04);
+  --cp-border: rgba(126, 162, 255, 0.14);
+  --cp-text-soft: #aab7cf;
+  --cp-accent: #ff6b2c;
 }
 
 /* Base */
 body.channel-page {
   background:
-    radial-gradient(ellipse at 15% 0%, rgba(220, 38, 38, 0.1), transparent 45%),
-    radial-gradient(ellipse at 85% 100%, rgba(180, 20, 20, 0.06), transparent 55%),
-    #0c0c0c;
+    radial-gradient(circle at 12% 0%, rgba(255, 107, 44, 0.12), transparent 28%),
+    radial-gradient(circle at 88% 6%, rgba(112, 153, 255, 0.12), transparent 24%),
+    #070b11;
   color: var(--text);
 }
 
@@ -16,9 +21,9 @@ body.channel-page {
   position: sticky;
   top: 0;
   z-index: 60;
-  background: rgba(10, 10, 10, 0.88);
+  background: rgba(7, 11, 17, 0.92);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(220, 38, 38, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .channel-page > header .header-inner {
@@ -42,7 +47,7 @@ body.channel-page {
   width: auto;
   max-width: 180px;
   display: block;
-  filter: drop-shadow(0 0 10px rgba(220, 38, 38, 0.25));
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.28));
 }
 
 .channel-page > header nav {
@@ -52,7 +57,7 @@ body.channel-page {
 }
 
 .channel-page > header nav a {
-  color: #b8b8c2;
+  color: #aab4c7;
   text-decoration: none;
   font-size: 0.92rem;
   font-weight: 600;
@@ -63,7 +68,7 @@ body.channel-page {
 
 .channel-page > header nav a:hover {
   color: #fff;
-  background: rgba(220, 38, 38, 0.18);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 /* Main block used by channel HTML pages */
@@ -75,24 +80,47 @@ body.channel-page {
 .channel-page .container > .card {
   margin-top: 10px;
   padding: clamp(18px, 2.2vw, 34px);
-  border-radius: 20px;
+  border-radius: 28px;
   background:
-    linear-gradient(180deg, rgba(20, 20, 20, 0.96), rgba(13, 13, 13, 0.96));
-  border: 1px solid rgba(220, 38, 38, 0.22);
+    linear-gradient(180deg, rgba(12, 18, 31, 0.98) 0%, rgba(9, 13, 24, 0.96) 100%);
+  border: 1px solid var(--cp-border);
   box-shadow:
-    0 18px 50px rgba(0, 0, 0, 0.5),
+    0 18px 50px rgba(0, 0, 0, 0.36),
     0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+.channel-page .channel-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  color: var(--cp-text-soft);
+  font-size: 0.84rem;
+  margin-bottom: 18px;
+}
+
+.channel-page .channel-breadcrumbs a {
+  color: var(--cp-text-soft);
+  text-decoration: none;
+}
+
+.channel-page .channel-breadcrumbs a:hover {
+  color: #fff;
+}
+
+.channel-page .channel-breadcrumbs strong {
+  color: #fff;
 }
 
 .channel-page .container > .card > img {
   width: clamp(84px, 12vw, 116px);
   height: clamp(84px, 12vw, 116px);
-  border-radius: 24px;
+  border-radius: 28px;
   object-fit: cover;
   display: block;
-  margin: 0 auto 14px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  margin: 0 auto 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.35);
   background: #0e0e0e;
 }
 
@@ -110,14 +138,42 @@ body.channel-page {
   text-align: center;
 }
 
+.channel-page .channel-highlight-bar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 20px;
+}
+
+.channel-page .channel-highlight-item {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.025) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  padding: 14px 16px;
+}
+
+.channel-page .channel-highlight-item span {
+  display: block;
+  color: var(--cp-text-soft);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.channel-page .channel-highlight-item strong {
+  color: #fff;
+  font-size: 0.96rem;
+}
+
 /* Override inline badge styles present in channel pages */
 .channel-page .badge {
   display: inline-flex !important;
   align-items: center;
   justify-content: center;
-  background: rgba(220, 38, 38, 0.11) !important;
-  color: #ff8d8d !important;
-  border: 1px solid rgba(220, 38, 38, 0.3) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #d7dfef !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 999px !important;
   padding: 6px 12px !important;
   font-size: 0.74rem !important;
@@ -141,11 +197,11 @@ body.channel-page {
   border-radius: var(--cp-radius);
   overflow: hidden;
   background: #000;
-  margin: 16px 0 16px;
+  margin: 18px 0 18px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:
-    0 14px 36px rgba(0, 0, 0, 0.45),
-    0 0 0 1px rgba(220, 38, 38, 0.12);
+    0 14px 36px rgba(0, 0, 0, 0.32),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
 .channel-page iframe {
@@ -155,32 +211,120 @@ body.channel-page {
   background: #000;
 }
 
-/* Last paragraph contains back link in current channel pages */
-.channel-page .container > .card > p:last-of-type {
-  margin-top: 2px;
-  margin-bottom: 0;
-  text-align: left;
+.channel-page .channel-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 4px;
 }
 
-.channel-page .container > .card > p:last-of-type a {
+.channel-page .channel-actions a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   color: #fff;
-  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-  padding: 10px 14px;
+  background: linear-gradient(135deg, rgba(255, 107, 44, 0.18), rgba(112, 153, 255, 0.18));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 11px 16px;
   text-decoration: none;
   font-weight: 700;
   font-size: 0.9rem;
   transition: transform 0.18s ease, filter 0.18s ease;
 }
 
-.channel-page .container > .card > p:last-of-type a:hover {
+.channel-page .channel-actions a:hover {
   transform: translateY(-1px);
   filter: brightness(1.06);
   text-decoration: none;
+}
+
+.channel-page .related-channels {
+  margin-top: 34px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.channel-page .related-channels-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.channel-page .related-kicker {
+  margin: 0 0 6px;
+  color: #ffb38e;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.channel-page .related-channels h2 {
+  margin: 0;
+  font-size: clamp(1.2rem, 1.1rem + 0.6vw, 1.6rem);
+  color: #fff;
+}
+
+.channel-page .related-all-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--cp-text-soft);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.channel-page .related-all-link:hover {
+  color: #fff;
+}
+
+.channel-page .related-channels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 14px;
+}
+
+.channel-page .related-channel-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  padding: 18px 14px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.channel-page .related-channel-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 179, 142, 0.4);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.26);
+}
+
+.channel-page .related-channel-card img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 10px;
+}
+
+.channel-page .related-channel-card strong {
+  font-size: 0.95rem;
+}
+
+.channel-page .related-channel-card span {
+  color: var(--cp-text-soft);
+  font-size: 0.8rem;
+  line-height: 1.45;
 }
 
 /* Optional layout support for future channel templates */
@@ -208,6 +352,15 @@ body.channel-page {
   .channel-page .container > .card {
     border-radius: 16px;
     padding: 16px 14px;
+  }
+
+  .channel-page .channel-highlight-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .channel-page .related-channels-head {
+    align-items: start;
+    flex-direction: column;
   }
 
   .channel-page .app-layout {
@@ -251,11 +404,23 @@ body.channel-page {
     aspect-ratio: 16 / 10;
   }
 
-  .channel-page .container > .card > p:last-of-type a {
+  .channel-page .channel-actions a {
     width: 100%;
     justify-content: center;
-    text-align: center;
-    padding: 11px 12px;
-    border-radius: 10px;
+  }
+
+  .channel-page .related-channels-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .channel-page .related-channel-card {
+    border-radius: 18px;
+    padding: 14px 10px;
+  }
+
+  .channel-page .related-channel-card img {
+    width: 62px;
+    height: 62px;
   }
 }

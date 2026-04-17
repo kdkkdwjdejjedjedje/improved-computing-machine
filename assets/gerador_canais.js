@@ -17,6 +17,54 @@ categories.forEach(c => { categoryMap[c.id] = c.name; });
 
 const sitemap = [];
 
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function getRelatedChannels(currentCanal, currentCats, allChannels) {
+  const currentId = currentCanal.id || currentCanal.slug;
+  const currentCategorySet = new Set((currentCanal.categories || []).filter(cid => cid !== 0));
+
+  const scored = allChannels
+    .filter(item => (item.id || item.slug) !== currentId)
+    .map(item => {
+      const itemCategories = (item.categories || []).filter(cid => cid !== 0);
+      const sharedCount = itemCategories.filter(cid => currentCategorySet.has(cid)).length;
+      return { item, sharedCount };
+    })
+    .sort((a, b) => {
+      if (b.sharedCount !== a.sharedCount) return b.sharedCount - a.sharedCount;
+      return (a.item.name || a.item.nome).localeCompare(b.item.name || b.item.nome, 'pt-BR');
+    });
+
+  const preferred = scored.filter(entry => entry.sharedCount > 0).slice(0, 8);
+  const fallback = scored.filter(entry => entry.sharedCount === 0).slice(0, Math.max(0, 8 - preferred.length));
+  const finalList = [...preferred, ...fallback].slice(0, 8);
+
+  return finalList.map(({ item }) => {
+    const relatedId = item.id || item.slug;
+    const relatedName = item.name || item.nome;
+    const relatedLogo = item.image || item.logo;
+    const relatedCats = (item.categories || [])
+      .filter(cid => cid !== 0)
+      .map(cid => categoryMap[cid] || '')
+      .filter(Boolean)
+      .slice(0, 2);
+
+    return {
+      id: relatedId,
+      name: relatedName,
+      logo: relatedLogo,
+      categories: relatedCats.length ? relatedCats.join(' • ') : (currentCats[0] || 'Canal ao vivo')
+    };
+  });
+}
+
 // Garante que a pasta canais/ existe
 const canaisDir = path.join(__dirname, '../canais');
 if (!fs.existsSync(canaisDir)) {
@@ -62,6 +110,7 @@ canais.forEach(canal => {
   const isNoticias = cats.some(c => c.toLowerCase().includes('noticia') || c.toLowerCase().includes('news'));
   const isFilmes = cats.some(c => c.toLowerCase().includes('filme') || c.toLowerCase().includes('series') || c.toLowerCase().includes('séries'));
   const isBBB = cats.some(c => c.toLowerCase().includes('bbb'));
+  const relatedChannels = getRelatedChannels(canal, cats, canais);
 
   let descExtra = '';
   if (isBBB) descExtra = 'câmeras ao vivo 24h, ';
@@ -69,6 +118,14 @@ canais.forEach(canal => {
   else if (isInfantil) descExtra = 'desenhos animados, séries infantis, ';
   else if (isNoticias) descExtra = 'notícias ao vivo, jornalismo, ';
   else if (isFilmes) descExtra = 'filmes, séries, entretenimento, ';
+
+  const categoryLabel = catsLabel || 'TV online';
+  const relatedCards = relatedChannels.map(related => `
+          <a class='related-channel-card' href='/canais/${escapeHtml(related.id)}.html' aria-label='Abrir canal ${escapeHtml(related.name)}'>
+            <img src='${escapeHtml(related.logo)}' alt='Logo do canal ${escapeHtml(related.name)}' loading='lazy' width='72' height='72'>
+            <strong>${escapeHtml(related.name)}</strong>
+            <span>${escapeHtml(related.categories)}</span>
+          </a>`).join('');
 
   const html = `<!DOCTYPE html>
 <html lang='pt-BR'>
@@ -220,9 +277,30 @@ canais.forEach(canal => {
   </header>
   <div class='container'>
     <div class='card'>
+      <div class='channel-breadcrumbs'>
+        <a href='/'>Início</a>
+        <span>/</span>
+        <a href='/canais'>Canais</a>
+        <span>/</span>
+        <strong>${nome}</strong>
+      </div>
       <img src='${logo}' alt='${nome} ao vivo — logo oficial' loading='lazy' width='120' height='120'>
       <h1>Assistir ${nome} ao Vivo Grátis</h1>
       ${catsBadges ? `<div class="badges-row">${catsBadges}</div>` : ''}
+      <div class='channel-highlight-bar'>
+        <div class='channel-highlight-item'>
+          <span>Categoria</span>
+          <strong>${categoryLabel}</strong>
+        </div>
+        <div class='channel-highlight-item'>
+          <span>Acesso</span>
+          <strong>Online agora</strong>
+        </div>
+        <div class='channel-highlight-item'>
+          <span>Navegação</span>
+          <strong>Links rápidos</strong>
+        </div>
+      </div>
       <p>
         Assista <strong>${nome}</strong> ao vivo e grátis no Pirate TV, sem precisar de cadastro ou pagamento. Transmissão ${descExtra ? descExtra.replace(/, $/, '') + ', ' : ''}em qualidade HD, disponível 24 horas por dia.<br><br>
         <strong>Por que assistir ${nome} no Pirate TV?</strong><br>
@@ -238,9 +316,21 @@ canais.forEach(canal => {
       <div class='channel-player-wrap'>
         <iframe src='${stream}' width='100%' height='480' frameborder='0' allowfullscreen title='Assistir ${nome} ao vivo grátis — Pirate TV' loading='lazy'></iframe>
       </div>
-      <p>
+      <div class='channel-actions'>
         <a href='/canais'>← Ver todos os canais ao vivo</a>
-      </p>
+      </div>
+      <section class='related-channels' aria-labelledby='related-title'>
+        <div class='related-channels-head'>
+          <div>
+            <p class='related-kicker'>Mais opções para assistir</p>
+            <h2 id='related-title'>Canais relacionados</h2>
+          </div>
+          <a href='/canais' class='related-all-link'>Abrir catálogo completo</a>
+        </div>
+        <div class='related-channels-grid'>
+${relatedCards}
+        </div>
+      </section>
     </div>
   </div>
   <!-- Statcounter -->
