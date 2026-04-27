@@ -1,18 +1,17 @@
 :root {
-  --cp-radius: 18px;
-  --cp-surface: rgba(10, 16, 28, 0.94);
-  --cp-surface-soft: rgba(255, 255, 255, 0.04);
-  --cp-border: rgba(126, 162, 255, 0.14);
-  --cp-text-soft: #aab7cf;
-  --cp-accent: #ff6b2c;
+  --cp-radius: 20px;
+  --cp-surface: #121212;
+  --cp-surface-soft: rgba(255, 255, 255, 0.03);
+  --cp-border: rgba(255, 255, 255, 0.06);
+  --cp-text-soft: #a0a0a0;
+  --cp-accent: #e31b23;
 }
 
 /* Base */
 body.channel-page {
   background:
-    radial-gradient(circle at 12% 0%, rgba(255, 107, 44, 0.12), transparent 28%),
-    radial-gradient(circle at 88% 6%, rgba(112, 153, 255, 0.12), transparent 24%),
-    #070b11;
+    radial-gradient(circle at 10% 10%, rgba(227, 27, 35, 0.05), transparent 40%),
+    #050505;
   color: var(--text);
 }
 
@@ -112,30 +111,50 @@ body.channel-page {
   color: #fff;
 }
 
-.channel-page .container > .card > img {
-  width: clamp(84px, 12vw, 116px);
-  height: clamp(84px, 12vw, 116px);
-  border-radius: 28px;
-  object-fit: cover;
-  display: block;
-  margin: 0 auto 16px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.35);
-  background: #0e0e0e;
+.channel-page .channel-header-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
-.channel-page .container > .card > h1 {
-  font-size: clamp(1.35rem, 1.2rem + 1.1vw, 2rem);
-  line-height: 1.2;
-  text-align: center;
-  margin: 0 0 8px;
+.channel-page .channel-logo-main {
+  width: 120px;
+  height: 120px;
+  border-radius: 24px;
+  object-fit: contain;
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.channel-page .channel-info h1 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
   color: #fff;
-  letter-spacing: 0.2px;
+  margin: 0 0 12px;
+  letter-spacing: -0.02em;
 }
 
 .channel-page .badges-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
   margin: 4px 0 14px !important;
-  text-align: center;
+}
+
+.channel-page .badge {
+  background: rgba(227, 27, 35, 0.1) !important;
+  color: var(--primary) !important;
+  border: 1px solid rgba(227, 27, 35, 0.2) !important;
+  padding: 5px 15px !important;
+  border-radius: 99px !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
 }
 
 .channel-page .channel-highlight-bar {
@@ -166,49 +185,56 @@ body.channel-page {
   font-size: 0.96rem;
 }
 
-/* Override inline badge styles present in channel pages */
-.channel-page .badge {
-  display: inline-flex !important;
+.channel-page .channel-content {
+  margin: 30px 0;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.channel-page .channel-content h2 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: var(--primary);
+}
+
+.channel-page .benefit-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  display: grid;
+  gap: 12px;
+}
+
+.channel-page .benefit-list li {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.05) !important;
-  color: #d7dfef !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: 999px !important;
-  padding: 6px 12px !important;
-  font-size: 0.74rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.04em !important;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: #d0d0d0;
 }
 
-.channel-page .container > .card > p {
-  color: #c1c1cb;
-  font-size: clamp(0.92rem, 0.88rem + 0.18vw, 1rem);
-  line-height: 1.72;
-  margin: 0 auto 18px;
-  max-width: 86ch;
-}
-
-.channel-page .container > .card > p strong {
-  color: #f2f2f4;
+.channel-page .benefit-list li::before {
+  content: '✓';
+  color: var(--primary);
+  font-weight: 800;
 }
 
 .channel-page .channel-player-wrap {
-  border-radius: var(--cp-radius);
+  border-radius: 24px;
   overflow: hidden;
   background: #000;
-  margin: 18px 0 18px;
+  margin: 24px 0;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow:
-    0 14px 36px rgba(0, 0, 0, 0.32),
-    0 0 0 1px rgba(255, 255, 255, 0.04);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+  aspect-ratio: 16 / 9;
 }
 
 .channel-page iframe {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 100%;
   border: 0;
-  background: #000;
 }
 
 .channel-page .channel-actions {
