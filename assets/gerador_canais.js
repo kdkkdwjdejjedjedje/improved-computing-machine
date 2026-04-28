@@ -1,4 +1,4 @@
-﻿// Node.js script para gerar páginas dos canais e sitemap.xml
+// Node.js script para gerar páginas dos canais e sitemap.xml
 // Compatível com o novo formato canais.json (embedtv.best)
 const fs = require('fs');
 const path = require('path');
@@ -253,6 +253,7 @@ canais.forEach(canal => {
     .badges-row { margin: 8px 0 12px 0; }
   </style>
   <!-- ADS -->
+  <script src='https://adtize.com.br/ads.js?token=eeefdd671142f5182cec18010f4d48a1&v=20260428113127'></script>
   <script type='text/javascript'>
     (function() {
       var s = document.createElement('script');
