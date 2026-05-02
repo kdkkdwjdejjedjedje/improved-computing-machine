@@ -135,9 +135,9 @@ canais.forEach(canal => {
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 
   <!-- ══ SEO PRIMARY ══ -->
-  <title>Assistir ${nome} ao Vivo Grátis HD 2026 | Pirate TV — Pirate TV</title>
+  <title>Assistir ${nome} ao Vivo Grátis HD | Pirate TV Oficial</title>
   <meta name='description' content='Assista ${nome} ao vivo grátis e em HD no Pirate TV. ${descExtra}sem cadastro, sem burocracia, 100% grátis. ${catsLabel ? 'Categoria: ' + catsLabel + '.' : ''} Acesse agora e aproveite a transmissão ao vivo!'>
-  <meta name='keywords' content='${nome} ao vivo, assistir ${nome} grátis, ${nome} online, ${catKeywords}${nome} HD, ${nome} sem cadastro, Pirate TV, pirate tv online, pirate tv grátis, TV online grátis, Pirate TV, streaming grátis brasil, canais ao vivo 2026'>
+  <meta name='keywords' content='${nome} ao vivo, assistir ${nome} grátis, ${nome} online, ${catKeywords}${nome} HD, ${nome} sem travamento, Pirate TV, pirate tv online, multicanais ${nome}, TV online grátis, streaming grátis brasil, futebol ao vivo'>
   <meta name='author' content='Pirate TV'>
   <meta name='language' content='pt-BR'>
   <meta name='revisit-after' content='1 days'>
@@ -174,18 +174,18 @@ canais.forEach(canal => {
   <meta property='og:type' content='website'>
   <meta property='og:site_name' content='Pirate TV'>
   <meta property='og:url' content='${dominio}/canais/${id}.html'>
-  <meta property='og:title' content='Assistir ${nome} ao Vivo Grátis HD 2026 | Pirate TV'>
-  <meta property='og:description' content='Assista ${nome} ao vivo grátis e em HD no Pirate TV. Sem cadastro, 100% grátis!'>
+  <meta property='og:title' content='Assistir ${nome} ao Vivo Grátis HD | Pirate TV Oficial'>
+  <meta property='og:description' content='Assista ${nome} ao vivo grátis e em HD no Pirate TV. Sem cadastro, 100% grátis, sem travar!'>
   <meta property='og:image' content='${logo}'>
-  <meta property='og:image:alt' content='${nome} ao Vivo — Pirate TV'>
+  <meta property='og:image:alt' content='${nome} ao Vivo — Pirate TV Oficial'>
   <meta property='og:locale' content='pt_BR'>
 
   <!-- ══ TWITTER CARD ══ -->
   <meta name='twitter:card' content='summary_large_image'>
-  <meta name='twitter:title' content='Assistir ${nome} ao Vivo Grátis HD 2026 | Pirate TV'>
-  <meta name='twitter:description' content='Assista ${nome} ao vivo grátis e em HD no Pirate TV. Sem cadastro, 100% grátis!'>
+  <meta name='twitter:title' content='Assistir ${nome} ao Vivo Grátis HD | Pirate TV Oficial'>
+  <meta name='twitter:description' content='Assista ${nome} ao vivo grátis e em HD no Pirate TV. Sem cadastro, 100% grátis, sem travar!'>
   <meta name='twitter:image' content='${logo}'>
-  <meta name='twitter:image:alt' content='${nome} ao Vivo — Pirate TV'>
+  <meta name='twitter:image:alt' content='${nome} ao Vivo — Pirate TV Oficial'>
 
   <!-- ══ SCHEMA.ORG ══ -->
   <script type='application/ld+json'>
@@ -196,8 +196,8 @@ canais.forEach(canal => {
         "@type": "WebPage",
         "@id": "${dominio}/canais/${id}.html#webpage",
         "url": "${dominio}/canais/${id}.html",
-        "name": "Assistir ${nome} ao Vivo Grátis HD 2026 | Pirate TV",
-        "description": "Assista ${nome} ao vivo grátis e em HD no Pirate TV. Sem cadastro, 100% grátis.",
+        "name": "Assistir ${nome} ao Vivo Grátis HD | Pirate TV Oficial",
+        "description": "Assista ${nome} ao vivo grátis e em HD no Pirate TV. Multicanais completo e sem travamentos.",
         "isPartOf": {
           "@type": "WebSite",
           "@id": "${dominio}/#website",
@@ -348,7 +348,7 @@ ${relatedCards}
       <div class='footer-top'>
         <div class='footer-brand'>
           <span class='footer-logo-text'>&#128324; Pirate<span>TV</span></span>
-          <p class='footer-tagline'>Assista TV online gr&aacute;tis, sem cadastro e em HD. +100 canais ao vivo.</p>
+          <p class='footer-tagline'>Pirate TV: a maior revolução de multicanais para assistir TV online gr&aacute;tis, sem limites e em HD! O verdadeiro paraíso com +150 canais abertos, times de futebol, filmes e entretenimento familiar.</p>
         </div>
         <div class='footer-links'>
           <div class='footer-col'>
