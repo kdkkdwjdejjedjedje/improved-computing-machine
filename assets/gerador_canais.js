@@ -176,7 +176,7 @@ function buildChannelPage(canal) {
   <meta name="keywords" content="${escapeHtml(keywords)}">
   <meta name="author" content="Pirate TV">
   <meta name="language" content="pt-BR">
-  <meta name="theme-color" content="#0b0f14">
+  <meta name="theme-color" content="#0c0c0c">
   <meta name="application-name" content="Pirate TV">
   <meta name="geo.region" content="BR">
   <meta name="geo.placename" content="Brasil">

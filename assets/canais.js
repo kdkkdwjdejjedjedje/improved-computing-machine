@@ -1,4 +1,4 @@
-﻿// Carrega canais do canais.json e lista no canais.html
+// Carrega canais do canais.json e lista no canais.html
 // Suporte ao novo formato {categories, channels} e ao formato antigo (array)
 fetch('canais.json')
   .then(res => res.json())
@@ -126,9 +126,68 @@ fetch('canais.json')
       });
     }
 
+
+    // --- CAROUSEL LOGIC ---
+    function initCarousel(dataCanais) {
+      if (!dataCanais || !Array.isArray(dataCanais)) return;
+
+      const track = document.getElementById('featured-carousel-track');
+      const prevBtn = document.querySelector('.carousel-nav.prev');
+      const nextBtn = document.querySelector('.carousel-nav.next');
+      if (!track) return;
+
+      let featuredChannels = dataCanais.filter(c => c.destaque === true);
+
+      // Fallback se não encontrar marcados ou se houver poucos
+      if (featuredChannels.length < 4) {
+        const autoFeaturedIds = ['espn', 'sportv', 'premiere', 'globo', 'caze', 'hbo', 'ufc'];
+        featuredChannels = dataCanais.filter(c =>
+          autoFeaturedIds.some(id => (getSlug(c) || '').includes(id) || (getNome(c) || '').toLowerCase().includes(id))
+        );
+      }
+
+      // Se ainda assim estiver vazio, pega os primeiros 14 para as duas linhas
+      if (featuredChannels.length === 0) {
+        featuredChannels = dataCanais.slice(0, 14);
+      } else {
+        featuredChannels = featuredChannels.slice(0, 14);
+      }
+
+      track.innerHTML = '';
+      featuredChannels.forEach(canal => {
+        const logo = getLogo(canal);
+        const name = getNome(canal);
+        const slug = getSlug(canal);
+
+        const item = document.createElement('a');
+        item.className = 'carousel-item';
+        item.href = `canais/${slug}.html`;
+        item.title = name;
+        item.innerHTML = `
+          <div class="carousel-item-img">
+            <img src="${logo}" alt="${name}" loading="lazy">
+          </div>
+          <span class="carousel-item-name">${name}</span>
+        `;
+        track.appendChild(item);
+      });
+
+      // Navigation
+      if (prevBtn && nextBtn) {
+        prevBtn.onclick = () => {
+          track.scrollBy({ left: -400, behavior: 'smooth' });
+        };
+        nextBtn.onclick = () => {
+          track.scrollBy({ left: 400, behavior: 'smooth' });
+        };
+      }
+    }
+
+    initCarousel(canais);
     renderGrid();
   })
-  .catch(() => {
+  .catch((err) => {
+    console.error('Error loading channels:', err);
     const grid = document.getElementById('canais-grid');
     const resultsSummary = document.getElementById('results-summary');
     if (resultsSummary) {
