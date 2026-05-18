@@ -410,29 +410,21 @@
 
 
   <!-- SEÇÃO DE CANAIS -->
-  <section class="home-canais-section" aria-labelledby="canais-title">
+  <section class="home-canais-section">
     <div class="section-heading centered">
       <h2 id="canais-title" class="home-canais-title">Canais ao vivo</h2>
     </div>
 
-    <div class="catalog-toolbar">
-      <div class="filter-bar" id="filter-bar" role="tablist" aria-label="Filtrar canais por categoria"></div>
+    <div class="search-container-wrap">
+      <div class="search-inner">
 
-      <label class="search-wrap" for="search-canais">
-        <span class="sr-only">Buscar canal</span>
-        <input type="search" id="search-canais" placeholder="Buscar canal, categoria ou destaque..."
-          aria-label="Buscar canal" autocomplete="off" enterkeyhint="search">
-      </label>
+        <input type="search" id="search-canais" placeholder="Buscar canal ou categoria..." aria-label="Buscar canal">
+      </div>
     </div>
 
-    <p id="results-summary" class="results-summary" aria-live="polite">Carregando catálogo...</p>
-
-    <section class="grid" id="canais-grid" itemscope itemtype="https://schema.org/ItemList" role="region"
-      aria-live="polite" aria-busy="true">
-      <p class="empty-state" role="status">
-        Carregando canais...
-      </p>
-    </section>
+    <div id="canais-grid" class="sections-container" aria-live="polite" aria-busy="true">
+      <p class="empty-state">Carregando catálogo...</p>
+    </div>
   </section>
 
   <article class="card seo-content">

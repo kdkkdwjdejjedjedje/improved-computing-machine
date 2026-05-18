@@ -1,5 +1,4 @@
-// Carrega canais do canais.json e lista no canais.html
-// Suporte ao novo formato {categories, channels} e ao formato antigo (array)
+// Carrega canais do canais.json e lista no canais.html por categorias
 fetch('canais.json')
   .then(res => res.json())
   .then(data => {
@@ -7,41 +6,17 @@ fetch('canais.json')
     const canais = isNew ? data.channels : data;
     const categories = isNew ? (data.categories || []) : [];
 
-    const grid = document.getElementById('canais-grid');
-    const filterBar = document.getElementById('filter-bar');
+    const mainContainer = document.getElementById('canais-grid');
     const searchInput = document.getElementById('search-canais');
     const resultsSummary = document.getElementById('results-summary');
-    const channelCount = document.getElementById('channel-count');
-    const categoryCount = document.getElementById('category-count');
-    if (!grid) return;
+    
+    if (!mainContainer) return;
 
-    let activeCategory = 0; // 0 = Todos
     let searchQuery = '';
 
-    if (channelCount) {
-      channelCount.textContent = `${canais.length}+`;
-    }
-
-    if (categoryCount && categories.length) {
-      categoryCount.textContent = `${Math.max(categories.length - 1, 1)}`;
-    }
-
-    // Renderiza botões de categoria
-    if (filterBar && categories.length) {
-      filterBar.innerHTML = '';
-      categories.forEach(cat => {
-        const btn = document.createElement('button');
-        btn.className = 'filter-btn' + (cat.id === 0 ? ' active' : '');
-        btn.textContent = cat.name;
-        btn.dataset.catId = cat.id;
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          activeCategory = cat.id;
-          renderGrid();
-        });
-        filterBar.appendChild(btn);
-      });
+    // Remove results summary if it exists as per user request
+    if (resultsSummary) {
+      resultsSummary.style.display = 'none';
     }
 
     function getSlug(canal) {
@@ -62,57 +37,80 @@ fetch('canais.json')
         .filter(Boolean);
     }
 
-    function updateSummary(total, visible) {
-      if (!resultsSummary) return;
+    function buildCardHtml(canal) {
+      const slug = getSlug(canal);
+      const logo = getLogo(canal);
+      const nome = getNome(canal);
+      const categoryNames = getCategoryNames(canal);
 
-      if (!searchQuery && activeCategory === 0) {
-        resultsSummary.textContent = `${visible} canais disponíveis no catálogo principal.`;
-        return;
-      }
-
-      const activeLabel = categories.find(cat => cat.id === activeCategory)?.name || 'Todos';
-      const searchLabel = searchQuery ? ` para "${searchQuery}"` : '';
-      resultsSummary.textContent = `${visible} de ${total} canais exibidos em ${activeLabel}${searchLabel}.`;
-    }
-
-    function renderGrid() {
-      grid.innerHTML = '';
-      const filtered = canais.filter(canal => {
-        const categoryMatch = activeCategory === 0 || (canal.categories || []).includes(activeCategory);
-        const name = getNome(canal).toLowerCase();
-        const categoryText = getCategoryNames(canal).join(' ').toLowerCase();
-        const searchMatch = !searchQuery || name.includes(searchQuery) || categoryText.includes(searchQuery);
-        return categoryMatch && searchMatch;
-      });
-
-      updateSummary(canais.length, filtered.length);
-
-      if (filtered.length === 0) {
-        grid.innerHTML = '<p class="empty-state" role="status">Nenhum canal encontrado com esse filtro. Tente outro nome ou categoria.</p>';
-        grid.setAttribute('aria-busy', 'false');
-        return;
-      }
-
-      filtered.forEach(canal => {
-        const slug = getSlug(canal);
-        const logo = getLogo(canal);
-        const nome = getNome(canal);
-        const categoryNames = getCategoryNames(canal);
-
-        const a = document.createElement('a');
-        a.className = 'channel-card';
-        a.href = `canais/${slug}.html`;
-        a.setAttribute('aria-label', `Abrir canal ${nome}`);
-        a.innerHTML = `
+      return `
+        <a class="channel-card" href="canais/${slug}.html" aria-label="Abrir canal ${nome}">
           <span class="channel-card-glow" aria-hidden="true"></span>
           <img class="channel-logo" src="${logo}" alt="Logo do canal ${nome}" loading="lazy">
           <h3>${nome}</h3>
           <p>${categoryNames.slice(0, 2).join(' • ') || 'Canal ao vivo'}</p>
-        `;
-        grid.appendChild(a);
-      });
+        </a>
+      `;
+    }
 
-      grid.setAttribute('aria-busy', 'false');
+    function renderContent() {
+      mainContainer.innerHTML = '';
+      mainContainer.setAttribute('aria-busy', 'true');
+
+      if (searchQuery) {
+        // Render search results in a single section
+        const filtered = canais.filter(canal => {
+          const name = getNome(canal).toLowerCase();
+          const categoryText = getCategoryNames(canal).join(' ').toLowerCase();
+          return name.includes(searchQuery) || categoryText.includes(searchQuery);
+        });
+
+        const searchSection = document.createElement('div');
+        searchSection.className = 'category-section';
+        
+        if (filtered.length === 0) {
+          searchSection.innerHTML = `
+            <div class="category-header"><h2>Nenhum resultado para "${searchQuery}"</h2></div>
+            <p class="empty-state">Tente outro nome ou categoria.</p>
+          `;
+        } else {
+          searchSection.innerHTML = `
+            <div class="category-header"><h2>Resultados para "${searchQuery}"</h2></div>
+            <div class="grid">${filtered.map(c => buildCardHtml(c)).join('')}</div>
+          `;
+        }
+        mainContainer.appendChild(searchSection);
+      } else {
+        // Render categorized sections
+        // Sort categories to show specific ones first if needed, e.g. Esportes
+        const sortedCategories = [...categories].sort((a, b) => {
+          if (a.id === 0) return 1; // "Todos" goes to end if we ever use it
+          if (a.name.toLowerCase().includes('esporte')) return -1;
+          if (b.name.toLowerCase().includes('esporte')) return 1;
+          return 0;
+        });
+
+        sortedCategories.forEach(cat => {
+          if (cat.id === 0) return; // Skip "Todos" section
+
+          const catChannels = canais.filter(c => (c.categories || []).includes(cat.id));
+          if (catChannels.length === 0) return;
+
+          const section = document.createElement('div');
+          section.className = 'category-section';
+          section.innerHTML = `
+            <div class="category-header">
+              <span class="category-dot"></span>
+              <h2>${cat.name}</h2>
+            </div>
+            <div class="grid">
+              ${catChannels.map(c => buildCardHtml(c)).join('')}
+            </div>
+          `;
+          mainContainer.appendChild(section);
+        });
+      }
+      mainContainer.setAttribute('aria-busy', 'false');
     }
 
     if (searchInput) {
@@ -121,81 +119,54 @@ fetch('canais.json')
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => {
           searchQuery = event.target.value.toLowerCase().trim();
-          renderGrid();
+          renderContent();
         }, 120);
       });
     }
 
-
     // --- CAROUSEL LOGIC ---
     function initCarousel(dataCanais) {
-      if (!dataCanais || !Array.isArray(dataCanais)) return;
-
       const track = document.getElementById('featured-carousel-track');
-      const prevBtn = document.querySelector('.carousel-nav.prev');
-      const nextBtn = document.querySelector('.carousel-nav.next');
       if (!track) return;
 
       let featuredChannels = dataCanais.filter(c => c.destaque === true);
-
-      // Fallback se não encontrar marcados ou se houver poucos
+      
+      // Fallback
       if (featuredChannels.length < 4) {
         const autoFeaturedIds = ['espn', 'sportv', 'premiere', 'globo', 'caze', 'hbo', 'ufc'];
         featuredChannels = dataCanais.filter(c =>
           autoFeaturedIds.some(id => (getSlug(c) || '').includes(id) || (getNome(c) || '').toLowerCase().includes(id))
-        );
-      }
-
-      // Se ainda assim estiver vazio, pega os primeiros 14 para as duas linhas
-      if (featuredChannels.length === 0) {
-        featuredChannels = dataCanais.slice(0, 14);
+        ).slice(0, 14);
       } else {
-        featuredChannels = featuredChannels.slice(0, 14);
+        featuredChannels = featuredChannels.slice(0, 20); // More items for a richer carousel
       }
 
-      track.innerHTML = '';
-      featuredChannels.forEach(canal => {
+      track.innerHTML = featuredChannels.map(canal => {
         const logo = getLogo(canal);
         const name = getNome(canal);
         const slug = getSlug(canal);
-
-        const item = document.createElement('a');
-        item.className = 'carousel-item';
-        item.href = `canais/${slug}.html`;
-        item.title = name;
-        item.innerHTML = `
-          <div class="carousel-item-img">
-            <img src="${logo}" alt="${name}" loading="lazy">
-          </div>
-          <span class="carousel-item-name">${name}</span>
+        return `
+          <a class="carousel-item" href="canais/${slug}.html" title="${name}">
+            <div class="carousel-item-img">
+              <img src="${logo}" alt="${name}" loading="lazy">
+            </div>
+            <span class="carousel-item-name">${name}</span>
+          </a>
         `;
-        track.appendChild(item);
-      });
+      }).join('');
 
-      // Navigation
+      // Auto-centering scroll if needed or just handle nav buttons
+      const prevBtn = document.querySelector('.carousel-nav.prev');
+      const nextBtn = document.querySelector('.carousel-nav.next');
       if (prevBtn && nextBtn) {
-        prevBtn.onclick = () => {
-          track.scrollBy({ left: -400, behavior: 'smooth' });
-        };
-        nextBtn.onclick = () => {
-          track.scrollBy({ left: 400, behavior: 'smooth' });
-        };
+        prevBtn.onclick = () => track.scrollBy({ left: -400, behavior: 'smooth' });
+        nextBtn.onclick = () => track.scrollBy({ left: 400, behavior: 'smooth' });
       }
     }
 
     initCarousel(canais);
-    renderGrid();
+    renderContent();
   })
-  .catch((err) => {
-    console.error('Error loading channels:', err);
-    const grid = document.getElementById('canais-grid');
-    const resultsSummary = document.getElementById('results-summary');
-    if (resultsSummary) {
-      resultsSummary.textContent = 'Nao foi possivel carregar o catalogo agora.';
-    }
-    if (grid) {
-      grid.setAttribute('aria-busy', 'false');
-      grid.innerHTML = '<p class="empty-state" role="status">Ocorreu um erro ao carregar os canais. Tente atualizar a pagina.</p>';
-    }
+  .catch(err => {
+    console.error('Error:', err);
   });
-
