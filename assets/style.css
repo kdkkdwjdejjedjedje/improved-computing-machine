@@ -2081,95 +2081,134 @@ footer {
 }
 
 .home-page {
-  padding-top: 22px;
+  padding-top: 24px;
 }
 
 .home-page .home-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.75fr);
-  gap: 18px;
-  align-items: stretch;
-  margin-bottom: 34px;
-}
-
-.home-page .hero-copy,
-.home-page .hero-panel {
-  background:
-    linear-gradient(145deg, rgba(18, 24, 33, 0.98) 0%, rgba(16, 23, 32, 0.96) 58%, rgba(31, 20, 24, 0.94) 100%);
-  border-color: rgba(255, 255, 255, 0.08);
+  display: block;
+  margin-bottom: 24px;
 }
 
 .home-page .hero-copy {
-  padding: clamp(26px, 4vw, 42px);
-}
-
-.home-page .hero-panel,
-.home-page .hero-highlights {
-  display: grid;
-}
-
-.home-page .hero-panel {
-  align-content: stretch;
-  gap: 14px;
-  padding: 22px;
-}
-
-.home-page .hero-highlights {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: 26px;
+  background:
+    linear-gradient(145deg, rgba(18, 24, 33, 0.98) 0%, rgba(14, 19, 27, 0.98) 58%, rgba(28, 18, 22, 0.96) 100%);
+  border-color: rgba(255, 255, 255, 0.09);
+  padding: clamp(28px, 5vw, 54px);
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .home-page .hero-home h1 {
-  max-width: 14ch;
+  max-width: none;
+  font-size: clamp(2.6rem, 7vw, 5.8rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin-bottom: 12px;
+}
+
+.home-page .hero-lead {
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  margin: 0;
 }
 
 .home-page .hero-actions {
-  margin-top: 24px;
+  margin-top: 28px;
 }
 
 .home-page .hero-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border-radius: 14px;
+  padding: 12px 18px;
 }
 
 .home-page .hero-btn-secondary {
   background: rgba(255, 255, 255, 0.04);
 }
 
-.home-page .hero-metric,
-.home-page .hero-highlights li {
-  background: #171d27;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 16px;
-}
-
-.home-page .hero-metric {
-  padding: 18px;
-}
-
-.home-page .hero-metric strong {
-  color: #fff;
-}
-
-.home-page .hero-panel-tags span {
-  background: #171d27;
-  border-color: rgba(255, 255, 255, 0.07);
-}
-
 .home-page .home-canais-section {
-  background: rgba(18, 24, 33, 0.62);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 20px;
-  padding: 22px;
+  background: rgba(18, 24, 33, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 22px;
+  padding: 24px;
 }
 
-.home-feature-grid {
-  margin-top: 24px;
+.home-page .section-heading {
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 0;
+}
+
+.home-page .home-canais-title {
+  font-size: clamp(1.35rem, 2vw, 2rem);
+}
+
+.home-page .catalog-toolbar {
+  background: #101720;
+  border-color: rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  padding: 12px;
+  gap: 12px;
+  align-items: center;
+}
+
+.home-page .filter-bar {
+  gap: 8px;
+}
+
+.home-page .filter-btn {
+  border-radius: 11px;
+  padding: 9px 13px;
+  background: #151d29;
+  color: #cbd5e1;
+}
+
+.home-page .filter-btn:hover,
+.home-page .filter-btn.active {
+  background: #ef4f3e;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  box-shadow: none;
+}
+
+.home-page #search-canais {
+  border-radius: 12px;
+  background: #151d29;
+}
+
+.home-page .grid {
+  gap: 14px;
+}
+
+.home-page .channel-card {
+  border-radius: 18px;
+  background: #101720;
+  border-color: rgba(255, 255, 255, 0.065);
+  padding: 18px 14px 16px;
+}
+
+.home-page .channel-card:hover {
+  background: #151d29;
+  border-color: rgba(240, 79, 62, 0.48);
+  transform: translateY(-4px);
+}
+
+.home-page .channel-logo {
+  width: 68px;
+  height: 68px;
+}
+
+.home-page .card {
+  border-radius: 22px;
 }
 
 @media (max-width: 900px) {
   .home-page .home-hero {
-    grid-template-columns: 1fr;
+    margin-bottom: 20px;
   }
 
   .hero-copy {
@@ -2187,8 +2226,7 @@ footer {
 
 @media (max-width: 700px) {
   .ad-shell {
-    margin-top: 12px;
-    padding: 0 12px;
+    margin-bottom: 18px;
   }
 
   .home-page {
@@ -2196,11 +2234,8 @@ footer {
   }
 
   .home-page .home-canais-section {
-    padding: 16px;
-  }
-
-  .home-page .hero-highlights {
-    grid-template-columns: 1fr;
+    padding: 14px;
+    border-radius: 18px;
   }
 
   .logo-bar {
@@ -2272,15 +2307,15 @@ footer {
   position: sticky;
   top: 0;
   z-index: 60;
-  background: rgba(9, 13, 19, 0.94);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  background: rgba(9, 13, 19, 0.86);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .site-header .header-inner {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 12px 16px;
+  padding: 10px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2294,29 +2329,34 @@ footer {
 
 .site-header img {
   width: auto;
-  height: 46px;
+  height: 42px;
   display: block;
 }
 
 .site-header nav {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
 }
 
 .site-header nav a {
   color: var(--text-muted);
   text-decoration: none;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 700;
-  padding: 8px 10px;
+  padding: 8px 12px;
   border-radius: 10px;
+  transition: color 0.18s ease, background 0.18s ease;
 }
 
 .site-header nav a:hover,
 .site-header nav a.active {
   color: #fff;
-  background: #171d27;
+  background: #1a2230;
 }
 
 .canais-page {
