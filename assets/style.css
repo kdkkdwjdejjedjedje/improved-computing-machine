@@ -2074,7 +2074,104 @@ footer {
   color: #ff7869;
 }
 
+.ad-shell {
+  max-width: 1120px;
+  margin: 0 auto 28px;
+  padding: 0;
+}
+
+.home-page {
+  padding-top: 22px;
+}
+
+.home-page .home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.75fr);
+  gap: 18px;
+  align-items: stretch;
+  margin-bottom: 34px;
+}
+
+.home-page .hero-copy,
+.home-page .hero-panel {
+  background:
+    linear-gradient(145deg, rgba(18, 24, 33, 0.98) 0%, rgba(16, 23, 32, 0.96) 58%, rgba(31, 20, 24, 0.94) 100%);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.home-page .hero-copy {
+  padding: clamp(26px, 4vw, 42px);
+}
+
+.home-page .hero-panel,
+.home-page .hero-highlights {
+  display: grid;
+}
+
+.home-page .hero-panel {
+  align-content: stretch;
+  gap: 14px;
+  padding: 22px;
+}
+
+.home-page .hero-highlights {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 26px;
+}
+
+.home-page .hero-home h1 {
+  max-width: 14ch;
+}
+
+.home-page .hero-actions {
+  margin-top: 24px;
+}
+
+.home-page .hero-btn {
+  display: inline-flex;
+  align-items: center;
+}
+
+.home-page .hero-btn-secondary {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.home-page .hero-metric,
+.home-page .hero-highlights li {
+  background: #171d27;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+}
+
+.home-page .hero-metric {
+  padding: 18px;
+}
+
+.home-page .hero-metric strong {
+  color: #fff;
+}
+
+.home-page .hero-panel-tags span {
+  background: #171d27;
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+.home-page .home-canais-section {
+  background: rgba(18, 24, 33, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 22px;
+}
+
+.home-feature-grid {
+  margin-top: 24px;
+}
+
 @media (max-width: 900px) {
+  .home-page .home-hero {
+    grid-template-columns: 1fr;
+  }
+
   .hero-copy {
     padding: 26px;
   }
@@ -2089,6 +2186,23 @@ footer {
 }
 
 @media (max-width: 700px) {
+  .ad-shell {
+    margin-top: 12px;
+    padding: 0 12px;
+  }
+
+  .home-page {
+    padding-top: 16px;
+  }
+
+  .home-page .home-canais-section {
+    padding: 16px;
+  }
+
+  .home-page .hero-highlights {
+    grid-template-columns: 1fr;
+  }
+
   .logo-bar {
     padding: 24px 16px 14px;
   }

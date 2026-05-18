@@ -352,21 +352,67 @@
     </div>
   </div>
 
-  <!-- LOGO BAR -->
-  <div class="logo-bar">
-    <a href="/" aria-label="Pirate TV - Página inicial">
-      <img src="piratetv.png" alt="Logo Pirate TV" class="logo-bar-img" width="320" height="108" fetchpriority="high">
-    </a>
-  </div>
-
-  <!-- BANNER AD -->
-  <div style="max-width: 720px; margin: 20px auto; padding: 0 15px;">
-    <script
-      src="https://adtize.com.br/js/banner.js?token=eeefdd671142f5182cec18010f4d48a1&format=responsive&v=20260514065818"></script>
-  </div>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="header-logo-link" aria-label="Pirate TV - pagina inicial">
+        <img src="piratetv.png" alt="Logo Pirate TV" width="132" height="58" fetchpriority="high">
+      </a>
+      <nav aria-label="Navegacao principal">
+        <a href="/" class="active" aria-current="page">Inicio</a>
+        <a href="/canais">Canais</a>
+        <a href="/bbb">BBB</a>
+      </nav>
+    </div>
+  </header>
 
   <!-- CONTEÚDO PRINCIPAL -->
-  <main id="main-content" class="container">
+  <main id="main-content" class="container home-page">
+    <section class="hero-home home-hero" aria-labelledby="home-title">
+      <div class="hero-copy">
+        <p class="hero-kicker">Pirate TV ao vivo</p>
+        <h1 id="home-title">TV online em um cat&aacute;logo r&aacute;pido e bonito</h1>
+        <p class="hero-lead">
+          Encontre canais de esportes, filmes, s&eacute;ries, not&iacute;cias, desenhos e transmiss&otilde;es especiais em uma
+          experi&ecirc;ncia feita para abrir bem no celular, computador e Smart TV.
+        </p>
+        <div class="hero-actions" aria-label="Acoes principais">
+          <a class="hero-btn hero-btn-primary" href="#canais-title">Ver canais agora</a>
+          <a class="hero-btn hero-btn-secondary" href="/canais">Abrir catalogo completo</a>
+        </div>
+        <ul class="hero-highlights" aria-label="Destaques da plataforma">
+          <li>Busca por nome e categoria</li>
+          <li>Layout responsivo em HD</li>
+          <li>Acesso direto pelo navegador</li>
+        </ul>
+      </div>
+
+      <aside class="hero-panel" aria-label="Resumo da plataforma">
+        <div class="hero-panel-top">
+          <p class="hero-panel-label">Agora no Pirate TV</p>
+          <div class="hero-panel-tags" aria-label="Categorias em destaque">
+            <span>Esportes</span>
+            <span>Filmes</span>
+            <span>Noticias</span>
+            <span>Infantil</span>
+          </div>
+        </div>
+        <div class="hero-metric">
+          <strong id="channel-count">100+</strong>
+          <span>canais organizados em categorias</span>
+        </div>
+        <div class="hero-metric">
+          <strong>24h</strong>
+          <span>opcoes ao vivo e paginas especiais</span>
+        </div>
+      </aside>
+    </section>
+
+    <!-- BANNER AD -->
+    <div class="ad-shell" aria-label="Publicidade">
+      <script
+        src="https://adtize.com.br/js/banner.js?token=eeefdd671142f5182cec18010f4d48a1&format=responsive&v=20260514065818"></script>
+    </div>
+
     <!-- SEÇÃO DE CANAIS -->
     <section class="home-canais-section" aria-labelledby="canais-title">
       <div class="section-heading">
@@ -393,10 +439,25 @@
 
       <section class="grid" id="canais-grid" itemscope itemtype="https://schema.org/ItemList" role="region"
         aria-live="polite" aria-busy="true">
-        <p style="color:#888;grid-column:1/-1;text-align:center;padding:40px;" role="status">
+        <p class="empty-state" role="status">
           Carregando canais...
         </p>
       </section>
+    </section>
+
+    <section class="info-grid home-feature-grid" aria-label="Destaques da pagina inicial">
+      <article class="info-card">
+        <h2>Encontre mais rapido</h2>
+        <p>Use os filtros e a busca para chegar no canal certo sem precisar rolar a pagina inteira.</p>
+      </article>
+      <article class="info-card">
+        <h2>Visual mais limpo</h2>
+        <p>A home agora combina melhor com o catalogo de canais, com cards, espacamentos e contraste mais consistentes.</p>
+      </article>
+      <article class="info-card">
+        <h2>Feita para telas pequenas</h2>
+        <p>Botoes, busca e grade se adaptam para toque no celular e leitura confortavel no desktop.</p>
+      </article>
     </section>
 
     <article class="card seo-content">
