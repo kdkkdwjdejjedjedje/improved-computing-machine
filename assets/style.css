@@ -2084,52 +2084,6 @@ footer {
   padding-top: 24px;
 }
 
-.home-page .home-hero {
-  display: block;
-  margin-bottom: 24px;
-}
-
-.home-page .hero-copy {
-  background:
-    linear-gradient(145deg, rgba(18, 24, 33, 0.98) 0%, rgba(14, 19, 27, 0.98) 58%, rgba(28, 18, 22, 0.96) 100%);
-  border-color: rgba(255, 255, 255, 0.09);
-  padding: clamp(28px, 5vw, 54px);
-  min-height: 240px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.home-page .hero-home h1 {
-  max-width: none;
-  font-size: clamp(2.6rem, 7vw, 5.8rem);
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-  margin-bottom: 12px;
-}
-
-.home-page .hero-lead {
-  font-size: clamp(1rem, 1.6vw, 1.25rem);
-  margin: 0;
-}
-
-.home-page .hero-actions {
-  margin-top: 28px;
-}
-
-.home-page .hero-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  border-radius: 14px;
-  padding: 12px 18px;
-}
-
-.home-page .hero-btn-secondary {
-  background: rgba(255, 255, 255, 0.04);
-}
-
 .home-page .home-canais-section {
   background: rgba(18, 24, 33, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -2207,10 +2161,6 @@ footer {
 }
 
 @media (max-width: 900px) {
-  .home-page .home-hero {
-    margin-bottom: 20px;
-  }
-
   .hero-copy {
     padding: 26px;
   }
