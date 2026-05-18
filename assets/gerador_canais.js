@@ -1,24 +1,27 @@
-// Node.js script para gerar páginas dos canais e sitemap.xml
-// Compatível com o novo formato canais.json (embedtv.best)
+// Gera paginas de canais e sitemap.xml a partir de canais.json.
 const fs = require('fs');
 const path = require('path');
 
 const dominio = 'https://piratetv.cfd';
-const dataAtual = '2026-03-13';
+const dataAtual = '2026-05-18';
 const data = require('../canais.json');
 
-// Suporte aos dois formatos: array antigo e novo objeto {categories, channels}
 const canais = Array.isArray(data) ? data : data.channels;
 const categories = Array.isArray(data) ? [] : (data.categories || []);
-
-// Monta mapa de id->nome das categorias para uso nas páginas
 const categoryMap = {};
-categories.forEach(c => { categoryMap[c.id] = c.name; });
+categories.forEach(category => {
+  categoryMap[category.id] = category.name;
+});
 
 const sitemap = [];
+const canaisDir = path.join(__dirname, '../canais');
+
+if (!fs.existsSync(canaisDir)) {
+  fs.mkdirSync(canaisDir, { recursive: true });
+}
 
 function escapeHtml(value) {
-  return String(value)
+  return String(value ?? '')
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
@@ -26,57 +29,381 @@ function escapeHtml(value) {
     .replace(/'/g, '&#39;');
 }
 
-function getRelatedChannels(currentCanal, currentCats, allChannels) {
-  const currentId = currentCanal.id || currentCanal.slug;
-  const currentCategorySet = new Set((currentCanal.categories || []).filter(cid => cid !== 0));
+function escapeJson(value) {
+  return String(value ?? '')
+    .replace(/\\/g, '\\\\')
+    .replace(/"/g, '\\"')
+    .replace(/\n/g, '\\n')
+    .replace(/\r/g, '');
+}
 
-  const scored = allChannels
-    .filter(item => (item.id || item.slug) !== currentId)
+function getChannelId(canal) {
+  return canal.id || canal.slug;
+}
+
+function getChannelName(canal) {
+  return canal.name || canal.nome;
+}
+
+function getChannelLogo(canal) {
+  return canal.image || canal.logo;
+}
+
+function getChannelStream(canal) {
+  return canal.url || canal.stream;
+}
+
+function getChannelCategories(canal) {
+  return (canal.categories || [])
+    .filter(categoryId => categoryId !== 0)
+    .map(categoryId => categoryMap[categoryId] || '')
+    .filter(Boolean);
+}
+
+function getRelatedChannels(currentCanal, currentCats) {
+  const currentId = getChannelId(currentCanal);
+  const currentCategorySet = new Set((currentCanal.categories || []).filter(categoryId => categoryId !== 0));
+
+  const scored = canais
+    .filter(item => getChannelId(item) !== currentId)
     .map(item => {
-      const itemCategories = (item.categories || []).filter(cid => cid !== 0);
-      const sharedCount = itemCategories.filter(cid => currentCategorySet.has(cid)).length;
+      const itemCategories = (item.categories || []).filter(categoryId => categoryId !== 0);
+      const sharedCount = itemCategories.filter(categoryId => currentCategorySet.has(categoryId)).length;
       return { item, sharedCount };
     })
     .sort((a, b) => {
       if (b.sharedCount !== a.sharedCount) return b.sharedCount - a.sharedCount;
-      return (a.item.name || a.item.nome).localeCompare(b.item.name || b.item.nome, 'pt-BR');
+      return getChannelName(a.item).localeCompare(getChannelName(b.item), 'pt-BR');
     });
 
   const preferred = scored.filter(entry => entry.sharedCount > 0).slice(0, 8);
   const fallback = scored.filter(entry => entry.sharedCount === 0).slice(0, Math.max(0, 8 - preferred.length));
-  const finalList = [...preferred, ...fallback].slice(0, 8);
 
-  return finalList.map(({ item }) => {
-    const relatedId = item.id || item.slug;
-    const relatedName = item.name || item.nome;
-    const relatedLogo = item.image || item.logo;
-    const relatedCats = (item.categories || [])
-      .filter(cid => cid !== 0)
-      .map(cid => categoryMap[cid] || '')
-      .filter(Boolean)
-      .slice(0, 2);
-
+  return [...preferred, ...fallback].slice(0, 8).map(({ item }) => {
+    const relatedCats = getChannelCategories(item).slice(0, 2);
     return {
-      id: relatedId,
-      name: relatedName,
-      logo: relatedLogo,
+      id: getChannelId(item),
+      name: getChannelName(item),
+      logo: getChannelLogo(item),
       categories: relatedCats.length ? relatedCats.join(' • ') : (currentCats[0] || 'Canal ao vivo')
     };
   });
 }
 
-// Garante que a pasta canais/ existe
-const canaisDir = path.join(__dirname, '../canais');
-if (!fs.existsSync(canaisDir)) {
-  fs.mkdirSync(canaisDir, { recursive: true });
+function getCategoryContext(cats) {
+  const normalized = cats.join(' ').toLowerCase();
+
+  if (normalized.includes('bbb')) {
+    return {
+      extra: 'câmeras ao vivo 24h',
+      intent: 'reality show ao vivo',
+      benefit: 'acompanhar a programação em tempo real'
+    };
+  }
+
+  if (normalized.includes('esporte') || normalized.includes('sport')) {
+    return {
+      extra: 'futebol ao vivo, campeonatos e esportes',
+      intent: 'esportes ao vivo',
+      benefit: 'assistir jogos, programas esportivos e transmissões ao vivo'
+    };
+  }
+
+  if (normalized.includes('infantil') || normalized.includes('kids')) {
+    return {
+      extra: 'desenhos animados e programação infantil',
+      intent: 'canal infantil online',
+      benefit: 'acompanhar desenhos e conteúdos para a família'
+    };
+  }
+
+  if (normalized.includes('noticia') || normalized.includes('news')) {
+    return {
+      extra: 'notícias ao vivo e jornalismo',
+      intent: 'notícias online',
+      benefit: 'acompanhar notícias, boletins e cobertura em tempo real'
+    };
+  }
+
+  if (normalized.includes('filme') || normalized.includes('série') || normalized.includes('series')) {
+    return {
+      extra: 'filmes, séries e entretenimento',
+      intent: 'filmes e séries online',
+      benefit: 'assistir filmes, séries, novelas e programação de entretenimento'
+    };
+  }
+
+  return {
+    extra: 'programação ao vivo',
+    intent: 'TV online',
+    benefit: 'acompanhar a programação ao vivo pelo navegador'
+  };
 }
 
-// Adiciona páginas principais ao sitemap
+function buildRelatedCards(relatedChannels) {
+  return relatedChannels.map(related => `
+          <a class="related-channel-card" href="/canais/${escapeHtml(related.id)}.html" aria-label="Abrir canal ${escapeHtml(related.name)}">
+            <img src="${escapeHtml(related.logo)}" alt="Logo do canal ${escapeHtml(related.name)}" loading="lazy" width="64" height="64">
+            <strong>${escapeHtml(related.name)}</strong>
+            <span>${escapeHtml(related.categories)}</span>
+          </a>`).join('');
+}
+
+function buildChannelPage(canal) {
+  const id = getChannelId(canal);
+  const nome = getChannelName(canal);
+  const logo = getChannelLogo(canal);
+  const stream = getChannelStream(canal);
+  const cats = getChannelCategories(canal);
+  const categoryLabel = cats.length ? cats.join(', ') : 'TV online';
+  const context = getCategoryContext(cats);
+  const relatedCards = buildRelatedCards(getRelatedChannels(canal, cats));
+  const catsBadges = cats.map(cat => `<span class="badge">${escapeHtml(cat)}</span>`).join('');
+  const pageUrl = `${dominio}/canais/${id}.html`;
+  const title = `Assistir ${nome} ao Vivo Online Grátis em HD | Pirate TV`;
+  const description = `Assista ${nome} ao vivo online grátis em HD no Pirate TV. Veja ${context.extra}, sem cadastro, direto pelo celular, computador, tablet ou Smart TV.`;
+  const keywords = `${nome} ao vivo, assistir ${nome} online grátis, ${nome} HD, ${nome} sem cadastro, Pirate TV, TV online grátis, multicanais, ${context.intent}`;
+
+  return `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>${escapeHtml(title)}</title>
+  <meta name="description" content="${escapeHtml(description)}">
+  <meta name="keywords" content="${escapeHtml(keywords)}">
+  <meta name="author" content="Pirate TV">
+  <meta name="language" content="pt-BR">
+  <meta name="theme-color" content="#0b0f14">
+  <meta name="application-name" content="Pirate TV">
+  <meta name="geo.region" content="BR">
+  <meta name="geo.placename" content="Brasil">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <link rel="canonical" href="${pageUrl}">
+  <link rel="alternate" hreflang="pt-BR" href="${pageUrl}">
+  <link rel="alternate" hreflang="x-default" href="${pageUrl}">
+  <link rel="preconnect" href="https://embedtv.best" crossorigin>
+  <link rel="preload" href="../assets/style.css" as="style">
+  <link rel="shortcut icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/channel-page.css">
+
+  <meta property="og:type" content="video.other">
+  <meta property="og:site_name" content="Pirate TV">
+  <meta property="og:url" content="${pageUrl}">
+  <meta property="og:title" content="${escapeHtml(title)}">
+  <meta property="og:description" content="${escapeHtml(description)}">
+  <meta property="og:image" content="${escapeHtml(logo)}">
+  <meta property="og:image:alt" content="${escapeHtml(nome)} ao vivo no Pirate TV">
+  <meta property="og:locale" content="pt_BR">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escapeHtml(title)}">
+  <meta name="twitter:description" content="${escapeHtml(description)}">
+  <meta name="twitter:image" content="${escapeHtml(logo)}">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "${pageUrl}#webpage",
+        "url": "${pageUrl}",
+        "name": "${escapeJson(title)}",
+        "description": "${escapeJson(description)}",
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": "${dominio}/#website",
+          "name": "Pirate TV",
+          "url": "${dominio}/"
+        },
+        "breadcrumb": { "@id": "${pageUrl}#breadcrumb" },
+        "inLanguage": "pt-BR",
+        "dateModified": "${dataAtual}"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "${pageUrl}#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Início", "item": "${dominio}/" },
+          { "@type": "ListItem", "position": 2, "name": "Canais", "item": "${dominio}/canais" },
+          { "@type": "ListItem", "position": 3, "name": "${escapeJson(nome)}", "item": "${pageUrl}" }
+        ]
+      },
+      {
+        "@type": "BroadcastService",
+        "name": "${escapeJson(nome)}",
+        "description": "${escapeJson(description)}",
+        "broadcastDisplayName": "${escapeJson(nome)}",
+        "inLanguage": "pt-BR",
+        "broadcastTimezone": "America/Sao_Paulo",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "${escapeJson(logo)}"
+        },
+        "potentialAction": {
+          "@type": "WatchAction",
+          "target": "${pageUrl}"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "${pageUrl}#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Como assistir ${escapeJson(nome)} ao vivo online?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Abra a página do canal no Pirate TV e use o player ao vivo diretamente pelo navegador."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "${escapeJson(nome)} funciona no celular?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. A página é responsiva e pode ser acessada por celular, tablet, computador e Smart TV."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="channel-page">
+  <header>
+    <div class="header-inner">
+      <a href="/" class="header-logo-link" aria-label="Pirate TV - página inicial">
+        <img src="../piratetv.png" alt="Pirate TV - TV online grátis" class="header-logo-img">
+      </a>
+      <nav aria-label="Navegação principal">
+        <a href="/">Início</a>
+        <a href="/canais">Canais</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="channel-shell">
+      <section class="channel-hero" aria-labelledby="channel-title">
+        <nav class="channel-breadcrumbs" aria-label="Breadcrumb">
+          <a href="/">Início</a>
+          <span>/</span>
+          <a href="/canais">Canais</a>
+          <span>/</span>
+          <strong>${escapeHtml(nome)}</strong>
+        </nav>
+
+        <div class="channel-heading">
+          <img class="channel-logo-main" src="${escapeHtml(logo)}" alt="Logo do canal ${escapeHtml(nome)}" loading="eager" width="112" height="112">
+          <div>
+            <p class="channel-kicker">${escapeHtml(categoryLabel)}</p>
+            <h1 id="channel-title">Assistir ${escapeHtml(nome)} ao vivo online grátis</h1>
+            ${catsBadges ? `<div class="badges-row">${catsBadges}</div>` : ''}
+          </div>
+        </div>
+
+        <p class="channel-lead">
+          Assista ${escapeHtml(nome)} ao vivo em HD no Pirate TV. Acesse ${escapeHtml(context.extra)}
+          direto pelo navegador, com página otimizada para celular, computador, tablet e Smart TV.
+        </p>
+
+        <div class="channel-highlight-bar" aria-label="Informações rápidas">
+          <div class="channel-highlight-item">
+            <span>Categoria</span>
+            <strong>${escapeHtml(categoryLabel)}</strong>
+          </div>
+          <div class="channel-highlight-item">
+            <span>Acesso</span>
+            <strong>Online agora</strong>
+          </div>
+          <div class="channel-highlight-item">
+            <span>Compatibilidade</span>
+            <strong>Mobile e desktop</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="watch-panel" aria-labelledby="watch-title">
+        <div class="watch-panel-head">
+          <h2 id="watch-title">${escapeHtml(nome)} ao vivo</h2>
+          <span class="live-pill">Transmissão online</span>
+        </div>
+        <div class="channel-player-wrap">
+          <iframe src="${escapeHtml(stream)}" allowfullscreen title="Assistir ${escapeHtml(nome)} ao vivo online grátis - Pirate TV" loading="lazy"></iframe>
+        </div>
+        <div class="channel-actions">
+          <a href="/canais">← Ver todos os canais ao vivo</a>
+        </div>
+      </section>
+
+      <article class="channel-seo">
+        <h2>Como assistir ${escapeHtml(nome)} online grátis</h2>
+        <p>
+          Para assistir ${escapeHtml(nome)} online, use o player acima e acompanhe a programação ao vivo pelo navegador.
+          Esta página reúne informações do canal, categorias relacionadas e links internos para facilitar a navegação no catálogo.
+        </p>
+        <ul class="benefit-list">
+          <li>Player responsivo para telas pequenas e grandes</li>
+          <li>Acesso direto sem instalar aplicativos</li>
+          <li>Links internos para canais relacionados</li>
+          <li>Conteúdo otimizado para busca e compartilhamento</li>
+        </ul>
+        <p>
+          O canal ${escapeHtml(nome)} é indicado para quem busca ${escapeHtml(context.benefit)}. Também é possível voltar ao
+          catálogo completo para encontrar canais de esportes, filmes, séries, notícias, infantis, abertos e variedades.
+        </p>
+      </article>
+
+      <section class="related-channels" aria-labelledby="related-title">
+        <div class="related-channels-head">
+          <div>
+            <p class="related-kicker">Mais opções para assistir</p>
+            <h2 id="related-title">Canais relacionados</h2>
+          </div>
+          <a href="/canais" class="related-all-link">Abrir catálogo completo</a>
+        </div>
+        <div class="related-channels-grid">
+${relatedCards}
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo-text">Pirate<span>TV</span></span>
+        <p class="footer-tagline">Pirate TV: catálogo de canais ao vivo para assistir TV online grátis em HD.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Navegação</h5>
+          <a href="/">Início</a>
+          <a href="/canais">Canais</a>
+          <a href="/bbb">BBB Ao Vivo</a>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p><a href="/">Pirate TV</a> &copy; 2026 - Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>`;
+}
+
 sitemap.push({ loc: `${dominio}/`, priority: '1.0', changefreq: 'daily' });
 sitemap.push({ loc: `${dominio}/canais`, priority: '0.9', changefreq: 'daily' });
 sitemap.push({ loc: `${dominio}/bbb`, priority: '0.9', changefreq: 'hourly' });
-
-// Adiciona páginas do blog ao sitemap
 sitemap.push({ loc: `${dominio}/blog`, priority: '0.7', changefreq: 'weekly' });
 sitemap.push({ loc: `${dominio}/blog/como-assistir-tv-online-gratis`, priority: '0.7', changefreq: 'weekly' });
 sitemap.push({ loc: `${dominio}/blog/como-assistir-futebol-ao-vivo-gratis`, priority: '0.7', changefreq: 'weekly' });
@@ -86,302 +413,16 @@ sitemap.push({ loc: `${dominio}/blog/sportv-ao-vivo-gratis`, priority: '0.7', ch
 sitemap.push({ loc: `${dominio}/blog/premiere-ao-vivo-gratis`, priority: '0.7', changefreq: 'weekly' });
 
 canais.forEach(canal => {
-  // Suporte aos dois formatos de campos
-  const id = canal.id || canal.slug;
-  const nome = canal.name || canal.nome;
-  const logo = canal.image || canal.logo;
-  const stream = canal.url || canal.stream;
-  const cats = (canal.categories || [])
-    .filter(cid => cid !== 0)
-    .map(cid => categoryMap[cid] || '')
-    .filter(Boolean);
-
-  const catsLabel = cats.length ? cats.join(', ') : '';
-  const catsBadges = cats.map(c => `<span class="badge">${c}</span>`).join('');
-
-  // Gera keywords específicas com base nas categorias
-  const catKeywords = cats.length
-    ? cats.map(c => `${nome} ${c.toLowerCase()}`).join(', ') + ', '
-    : '';
-
-  // Gera descrição contextualizada por categoria
-  const isEsportes = cats.some(c => c.toLowerCase().includes('esporte') || c.toLowerCase().includes('sport'));
-  const isInfantil = cats.some(c => c.toLowerCase().includes('infantil') || c.toLowerCase().includes('kids'));
-  const isNoticias = cats.some(c => c.toLowerCase().includes('noticia') || c.toLowerCase().includes('news'));
-  const isFilmes = cats.some(c => c.toLowerCase().includes('filme') || c.toLowerCase().includes('series') || c.toLowerCase().includes('séries'));
-  const isBBB = cats.some(c => c.toLowerCase().includes('bbb'));
-  const relatedChannels = getRelatedChannels(canal, cats, canais);
-
-  let descExtra = '';
-  if (isBBB) descExtra = 'câmeras ao vivo 24h, ';
-  else if (isEsportes) descExtra = 'futebol ao vivo, campeonatos, esportes, ';
-  else if (isInfantil) descExtra = 'desenhos animados, séries infantis, ';
-  else if (isNoticias) descExtra = 'notícias ao vivo, jornalismo, ';
-  else if (isFilmes) descExtra = 'filmes, séries, entretenimento, ';
-
-  const categoryLabel = catsLabel || 'TV online';
-  const relatedCards = relatedChannels.map(related => `
-          <a class='related-channel-card' href='/canais/${escapeHtml(related.id)}.html' aria-label='Abrir canal ${escapeHtml(related.name)}'>
-            <img src='${escapeHtml(related.logo)}' alt='Logo do canal ${escapeHtml(related.name)}' loading='lazy' width='72' height='72'>
-            <strong>${escapeHtml(related.name)}</strong>
-            <span>${escapeHtml(related.categories)}</span>
-          </a>`).join('');
-
-  const html = `<!DOCTYPE html>
-<html lang='pt-BR'>
-<head>
-  <meta charset='UTF-8'>
-  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-
-  <!-- ══ SEO PRIMARY ══ -->
-  <title>Assistir ${nome} ao Vivo Grátis HD | Pirate TV Oficial</title>
-  <meta name='description' content='Assista ${nome} ao vivo grátis e em HD no Pirate TV. ${descExtra}sem cadastro, sem burocracia, 100% grátis. ${catsLabel ? 'Categoria: ' + catsLabel + '.' : ''} Acesse agora e aproveite a transmissão ao vivo!'>
-  <meta name='keywords' content='${nome} ao vivo, assistir ${nome} grátis, ${nome} online, ${catKeywords}${nome} HD, ${nome} sem travamento, Pirate TV, pirate tv online, multicanais ${nome}, TV online grátis, streaming grátis brasil, futebol ao vivo'>
-  <meta name='author' content='Pirate TV'>
-  <meta name='language' content='pt-BR'>
-  <meta name='revisit-after' content='1 days'>
-  <meta name='rating' content='general'>
-  <meta name='theme-color' content='#0f0f1a'>
-  <meta name='application-name' content='Pirate TV'>
-
-  <!-- ══ GEO ══ -->
-  <meta name='geo.region' content='BR'>
-  <meta name='geo.placename' content='Brasil'>
-
-  <!-- ══ ROBOTS ══ -->
-  <meta name='robots' content='index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'>
-
-  <!-- ══ CANONICAL & HREFLANG ══ -->
-  <link rel='canonical' href='${dominio}/canais/${id}.html'>
-  <link rel='alternate' hreflang='pt-BR' href='${dominio}/canais/${id}.html'>
-  <link rel='alternate' hreflang='x-default' href='${dominio}/canais/${id}.html'>
-
-  <!-- ══ PERFORMANCE ══ -->
-  <link rel='preconnect' href='https://embedtv.best' crossorigin>
-  <link rel='dns-prefetch' href='https://acscdn.com'>
-  <link rel='preload' href='../assets/style.css' as='style'>
-
-  <!-- ══ FAVICON ══ -->
-  <link rel='shortcut icon' href='../favicon.png' type='image/png'>
-  <link rel='apple-touch-icon' href='../favicon.png'>
-
-  <!-- ══ STYLESHEET ══ -->
-  <link rel='stylesheet' href='../assets/style.css'>
-  <link rel='stylesheet' href='../assets/channel-page.css'>
-
-  <!-- ══ OPEN GRAPH ══ -->
-  <meta property='og:type' content='website'>
-  <meta property='og:site_name' content='Pirate TV'>
-  <meta property='og:url' content='${dominio}/canais/${id}.html'>
-  <meta property='og:title' content='Assistir ${nome} ao Vivo Grátis HD | Pirate TV Oficial'>
-  <meta property='og:description' content='Assista ${nome} ao vivo grátis e em HD no Pirate TV. Sem cadastro, 100% grátis, sem travar!'>
-  <meta property='og:image' content='${logo}'>
-  <meta property='og:image:alt' content='${nome} ao Vivo — Pirate TV Oficial'>
-  <meta property='og:locale' content='pt_BR'>
-
-  <!-- ══ TWITTER CARD ══ -->
-  <meta name='twitter:card' content='summary_large_image'>
-  <meta name='twitter:title' content='Assistir ${nome} ao Vivo Grátis HD | Pirate TV Oficial'>
-  <meta name='twitter:description' content='Assista ${nome} ao vivo grátis e em HD no Pirate TV. Sem cadastro, 100% grátis, sem travar!'>
-  <meta name='twitter:image' content='${logo}'>
-  <meta name='twitter:image:alt' content='${nome} ao Vivo — Pirate TV Oficial'>
-
-  <!-- ══ SCHEMA.ORG ══ -->
-  <script type='application/ld+json'>
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebPage",
-        "@id": "${dominio}/canais/${id}.html#webpage",
-        "url": "${dominio}/canais/${id}.html",
-        "name": "Assistir ${nome} ao Vivo Grátis HD | Pirate TV Oficial",
-        "description": "Assista ${nome} ao vivo grátis e em HD no Pirate TV. Multicanais completo e sem travamentos.",
-        "isPartOf": {
-          "@type": "WebSite",
-          "@id": "${dominio}/#website",
-          "name": "Pirate TV",
-          "alternateName": "Pirate TV",
-          "url": "${dominio}/"
-        },
-        "breadcrumb": { "@id": "${dominio}/canais/${id}.html#breadcrumb" },
-        "inLanguage": "pt-BR",
-        "dateModified": "${dataAtual}"
-      },
-      {
-        "@type": "BreadcrumbList",
-        "@id": "${dominio}/canais/${id}.html#breadcrumb",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Início", "item": "${dominio}/" },
-          { "@type": "ListItem", "position": 2, "name": "Canais", "item": "${dominio}/canais" },
-          { "@type": "ListItem", "position": 3, "name": "${nome}", "item": "${dominio}/canais/${id}.html" }
-        ]
-      },
-      {
-        "@type": "BroadcastService",
-        "name": "${nome}",
-        "description": "Assista ${nome} ao vivo grátis no Pirate TV. Transmissão contínua em HD.",
-        "broadcastDisplayName": "${nome}",
-        "inLanguage": "pt-BR",
-        "broadcastTimezone": "America/Sao_Paulo",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "${logo}"
-        },
-        "potentialAction": {
-          "@type": "WatchAction",
-          "target": "${dominio}/canais/${id}.html"
-        }
-      }
-    ]
-  }
-  </script>
-  <style>
-    .badge {
-      display: inline-block;
-      background: #1a1a2e;
-      color: #e94560;
-      border: 1px solid #e94560;
-      border-radius: 4px;
-      padding: 2px 10px;
-      font-size: 0.78em;
-      font-weight: 600;
-      margin: 2px 3px;
-      letter-spacing: 0.04em;
-    }
-    .badges-row { margin: 8px 0 12px 0; }
-  </style>
-  <!-- ADS -->
-  <script src='https://adtize.com.br/ads.js?token=eeefdd671142f5182cec18010f4d48a1&v=20260428113127'></script>
-  <script type='text/javascript'>
-    (function() {
-      var s = document.createElement('script');
-      s.src = '//acscdn.com/script/aclib.js';
-      s.onload = function() { aclib.runPop({ zoneId: '10210234' }); };
-      document.head.appendChild(s);
-    })();
-  </script>
-  <script type='text/javascript' data-cfasync='false' async src='//rt.areekwiney.com/rAyJGmWtqhqQIJxZ9/137410'></script>
-</head>
-<body class='channel-page'>
-  <header>
-    <div class='header-inner'>
-      <a href='/' class='header-logo-link'>
-        <img src='../piratetv.png' alt='Pirate TV - TV Online Grátis' class='header-logo-img'>
-      </a>
-      <nav>
-        <a href='/'>Início</a>
-        <a href='/canais'>Canais</a>
-      </nav>
-    </div>
-  </header>
-  <div class='container'>
-    <div class='card'>
-      <div class='channel-breadcrumbs'>
-        <a href='/'>Início</a>
-        <span>/</span>
-        <a href='/canais'>Canais</a>
-        <span>/</span>
-        <strong>${nome}</strong>
-      </div>
-      <img src='${logo}' alt='${nome} ao vivo — logo oficial' loading='lazy' width='120' height='120'>
-      <h1>Assistir ${nome} ao Vivo Grátis</h1>
-      ${catsBadges ? `<div class="badges-row">${catsBadges}</div>` : ''}
-      <div class='channel-highlight-bar'>
-        <div class='channel-highlight-item'>
-          <span>Categoria</span>
-          <strong>${categoryLabel}</strong>
-        </div>
-        <div class='channel-highlight-item'>
-          <span>Acesso</span>
-          <strong>Online agora</strong>
-        </div>
-        <div class='channel-highlight-item'>
-          <span>Navegação</span>
-          <strong>Links rápidos</strong>
-        </div>
-      </div>
-      <p>
-        Assista <strong>${nome}</strong> ao vivo e grátis no Pirate TV, sem precisar de cadastro ou pagamento. Transmissão ${descExtra ? descExtra.replace(/, $/, '') + ', ' : ''}em qualidade HD, disponível 24 horas por dia.<br><br>
-        <strong>Por que assistir ${nome} no Pirate TV?</strong><br>
-        — Transmissão estável em HD<br>
-        — 100% grátis, sem cadastro<br>
-        — Compatível com celular, tablet, PC e Smart TV<br>
-        — Links sempre atualizados<br>
-        — Sem instalação de aplicativos<br><br>
-        <strong>Como assistir ${nome} online grátis?</strong><br>
-        Clique no player abaixo e assista <strong>${nome} ao vivo</strong> agora mesmo, direto no navegador.<br><br>
-        <em>Palavras-chave: ${nome} ao vivo, assistir ${nome} grátis, ${nome} online HD, Pirate TV, TV online grátis 2026${catsLabel ? ', ' + catsLabel.toLowerCase() : ''}.</em>
-      </p>
-      <div class='channel-player-wrap'>
-        <iframe src='${stream}' width='100%' height='480' frameborder='0' allowfullscreen title='Assistir ${nome} ao vivo grátis — Pirate TV' loading='lazy'></iframe>
-      </div>
-      <div class='channel-actions'>
-        <a href='/canais'>← Ver todos os canais ao vivo</a>
-      </div>
-      <section class='related-channels' aria-labelledby='related-title'>
-        <div class='related-channels-head'>
-          <div>
-            <p class='related-kicker'>Mais opções para assistir</p>
-            <h2 id='related-title'>Canais relacionados</h2>
-          </div>
-          <a href='/canais' class='related-all-link'>Abrir catálogo completo</a>
-        </div>
-        <div class='related-channels-grid'>
-${relatedCards}
-        </div>
-      </section>
-    </div>
-  </div>
-  <!-- Statcounter -->
-  <script type='text/javascript'>
-    var sc_project=13207183;
-    var sc_invisible=1;
-    var sc_security='3dbfd3a0';
-  </script>
-  <script type='text/javascript' src='https://www.statcounter.com/counter/counter.js' async></script>
-  <noscript><div class='statcounter'><img class='statcounter' src='https://c.statcounter.com/13207183/0/3dbfd3a0/1/' alt='' referrerPolicy='no-referrer-when-downgrade' style='display:none'></div></noscript>
-  <!-- End Statcounter -->
-  <footer>
-    <div class='footer-inner'>
-      <div class='footer-top'>
-        <div class='footer-brand'>
-          <span class='footer-logo-text'>&#128324; Pirate<span>TV</span></span>
-          <p class='footer-tagline'>Pirate TV: a maior revolução de multicanais para assistir TV online gr&aacute;tis, sem limites e em HD! O verdadeiro paraíso com +150 canais abertos, times de futebol, filmes e entretenimento familiar.</p>
-        </div>
-        <div class='footer-links'>
-          <div class='footer-col'>
-            <h4>Navega&ccedil;&atilde;o</h4>
-            <a href='/'>In&iacute;cio</a>
-            <a href='/canais'>Canais</a>
-            <a href='/bbb'>BBB Ao Vivo</a>
-          </div>
-        </div>
-      </div>
-
-      <div class='footer-divider'></div>
-      <div class='footer-bottom'>
-        <a href='/'>Pirate TV</a> &copy; 2026 &mdash; Todos os direitos reservados.
-      </div>
-    </div>
-  </footer>
-</body>
-</html>`;
-
-  // Salva o HTML do canal
-  const filePath = path.join(__dirname, '../canais', `${id}.html`);
-  fs.writeFileSync(filePath, html, 'utf8');
-  // Adiciona ao sitemap
+  const id = getChannelId(canal);
+  fs.writeFileSync(path.join(canaisDir, `${id}.html`), buildChannelPage(canal), 'utf8');
   sitemap.push({ loc: `${dominio}/canais/${id}.html`, priority: '0.8', changefreq: 'daily' });
 });
 
-// Gera sitemap.xml com lastmod e changefreq
-let sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+let sitemapXml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
 sitemap.forEach(item => {
   sitemapXml += `  <url>\n    <loc>${item.loc}</loc>\n    <lastmod>${dataAtual}</lastmod>\n    <changefreq>${item.changefreq}</changefreq>\n    <priority>${item.priority}</priority>\n  </url>\n`;
 });
-sitemapXml += `</urlset>\n`;
-fs.writeFileSync(path.join(__dirname, '../sitemap.xml'), sitemapXml, 'utf8');
-console.log(`✅ ${canais.length} páginas de canais e sitemap.xml gerados com sucesso!`);
+sitemapXml += '</urlset>\n';
 
+fs.writeFileSync(path.join(__dirname, '../sitemap.xml'), sitemapXml, 'utf8');
+console.log(`${canais.length} paginas de canais e sitemap.xml gerados com sucesso.`);

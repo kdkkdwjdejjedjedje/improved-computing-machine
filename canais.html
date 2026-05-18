@@ -1,312 +1,175 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>Pirate TV – Todos os Canais ao Vivo | Filmes, Esportes e Notícias</title>
-<meta name="description" content="Lista completa de canais do Pirate TV. Assista aos melhores canais de TV ao vivo, futebol grátis, multicanais em HD, reality shows, esportes e muito mais, tudo gratuito e sem limites!">
-<link rel="icon" href="favicon.png" type="image/png">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
+  <title>Canais ao Vivo Online Grátis em HD | Pirate TV</title>
+  <meta name="description" content="Veja o catálogo de canais ao vivo do Pirate TV: esportes, filmes, séries, notícias, canais abertos, infantis e variedades para assistir online grátis em HD.">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#0b0f14">
+  <link rel="canonical" href="https://piratetv.cfd/canais">
+  <link rel="alternate" hreflang="pt-BR" href="https://piratetv.cfd/canais">
+  <link rel="alternate" hreflang="x-default" href="https://piratetv.cfd/canais">
 
-:root{
-  --primary:#e31b23;
-  --primary-hover:#ff0000;
-  --bg:#050505;
-  --bg-card:#121212;
-  --text:#ffffff;
-  --text-muted:#aab4c7;
-  --border:rgba(255,255,255,0.06);
-  --accent:#e31b23;
-}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pirate TV">
+  <meta property="og:url" content="https://piratetv.cfd/canais">
+  <meta property="og:title" content="Canais ao Vivo Online Grátis em HD | Pirate TV">
+  <meta property="og:description" content="Catálogo completo de canais ao vivo para assistir online grátis em HD no celular, tablet, computador e Smart TV.">
+  <meta property="og:image" content="https://piratetv.cfd/piratetv.png">
+  <meta property="og:locale" content="pt_BR">
 
-body{
-  font-family:'Manrope','Segoe UI',Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
-  background-image:
-    radial-gradient(circle at 10% 10%, rgba(227, 27, 35, 0.05) 0%, transparent 40%),
-    linear-gradient(180deg, #050505 0%, #0a0a0a 100%);
-  line-height:1.6;
-}
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="preload" href="assets/style.css" as="style">
+  <link rel="stylesheet" href="assets/style.css">
 
-/* HEADER */
-header{
-  background:rgba(5,5,5,.94);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.header-inner{
-  max-width:1200px;
-  margin:auto;
-  padding:12px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-nav a{
-  color:var(--text-muted);
-  margin-left:20px;
-  text-decoration:none;
-  font-size: 0.95rem;
-  font-weight:600;
-  transition:all .2s ease;
-}
-nav a:hover,.active{color:#fff}
-.active { color: var(--primary) !important; }
-
-/* CONTAINER */
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:40px 20px;
-}
-
-.home-canais-title{
-  font-size: 2.2rem;
-  font-weight: 800;
-  margin-bottom:30px;
-  color: #fff;
-  letter-spacing: -0.02em;
-}
-
-/* SEARCH */
-#search-canais{
-  width:100%;
-  padding:16px 20px;
-  border-radius:14px;
-  border:1px solid var(--border);
-  margin-bottom:30px;
-  background:var(--bg-card);
-  color:var(--text);
-  font-family: inherit;
-  font-size: 1rem;
-  outline:none;
-  transition: all 0.3s ease;
-}
-#search-canais:focus{
-  border-color:var(--primary);
-  box-shadow:0 0 0 4px rgba(227,27,35,0.15);
-}
-
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-  gap:20px;
-}
-
-/* CARD */
-.channel-card{
-  background:var(--bg-card);
-  border-radius:18px;
-  overflow:hidden;
-  transition:all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  cursor:pointer;
-  border:1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  text-decoration: none;
-}
-.channel-card:hover{
-  transform:translateY(-8px);
-  border-color:var(--primary);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-}
-.channel-card img{
-  width:100%;
-  aspect-ratio: 16 / 10;
-  object-fit:contain;
-  padding: 15px;
-  background: #1a1a1a;
-  border-bottom: 1px solid var(--border);
-}
-.channel-card h3{
-  padding:15px;
-  font-size:0.95rem;
-  font-weight: 700;
-  text-align:center;
-  color:var(--text);
-  margin: 0;
-}
-
-/* SEO BOX */
-.seo-content{
-  background:var(--bg-card);
-  padding:40px;
-  border-radius:24px;
-  margin-top:50px;
-  color:var(--text-muted);
-  border:1px solid var(--border);
-}
-.seo-content h2,
-.seo-content h3,
-.seo-content h4{
-  color:var(--text);
-  margin:24px 0 12px;
-}
-.seo-content h2{margin-top:0; font-size: 1.6rem;}
-.seo-content p,
-.seo-content ul{
-  line-height:1.75;
-  margin-bottom:18px;
-}
-.seo-content ul{padding-left:22px}
-.seo-content a{
-  color:var(--primary);
-  text-decoration:none;
-  font-weight: 600;
-}
-.seo-content a:hover{text-decoration:underline}
-
-.seo-content strong{
-  color:#fff;
-}
-
-/* FOOTER */
-footer{
-  margin-top:60px;
-  background:#0a0a0a;
-  border-top:1px solid var(--border);
-}
-.footer-inner{
-  max-width:1200px;
-  margin:auto;
-  padding:40px 20px;
-  text-align:center;
-  color:var(--text-muted);
-  font-size: 0.9rem;
-}
-</style>
-
-  <!-- ADS -->
-  <script src="https://adtize.com.br/js/ads.js?token=eeefdd671142f5182cec18010f4d48a1&v=20260514065818"></script>
-  <script src="https://adtize.com.br/js/popunder.js?token=eeefdd671142f5182cec18010f4d48a1&v=20260514065818"></script>
-  <script src="https://adtize.com.br/js/popunder.js?token=eeefdd671142f5182cec18010f4d48a1&v=20260514065818"></script>
-
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://piratetv.cfd/canais#webpage",
+        "url": "https://piratetv.cfd/canais",
+        "name": "Canais ao Vivo Online Grátis em HD",
+        "description": "Catálogo de canais ao vivo online grátis do Pirate TV.",
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": "https://piratetv.cfd/#website",
+          "name": "Pirate TV",
+          "url": "https://piratetv.cfd/"
+        },
+        "breadcrumb": { "@id": "https://piratetv.cfd/canais#breadcrumb" },
+        "inLanguage": "pt-BR"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://piratetv.cfd/canais#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://piratetv.cfd/" },
+          { "@type": "ListItem", "position": 2, "name": "Canais", "item": "https://piratetv.cfd/canais" }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
-
 <body>
+  <a class="skip-link" href="#catalogo-canais">Pular para os canais</a>
 
-<header>
-  <div class="header-inner">
-    <img src="piratetv.png" width="120">
-    <nav>
-      <a href="/">Início</a>
-      <a href="/canais" class="active">Canais</a>
-      <a href="/bbb">BBB</a>
-    </nav>
-  </div>
-</header>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="header-logo-link" aria-label="Pirate TV - página inicial">
+        <img src="piratetv.png" alt="Pirate TV" width="132" height="58">
+      </a>
+      <nav aria-label="Navegação principal">
+        <a href="/">Início</a>
+        <a href="/canais" class="active" aria-current="page">Canais</a>
+        <a href="/bbb">BBB</a>
+      </nav>
+    </div>
+  </header>
 
-<!-- BANNER AD -->
-<div style="max-width: 720px; margin: 20px auto; padding: 0 15px;">
-    <script src="https://adtize.com.br/js/banner.js?token=eeefdd671142f5182cec18010f4d48a1&format=responsive&v=20260514065818"></script>
-</div>
+  <main class="container canais-page">
+    <section class="catalog-hero" aria-labelledby="catalog-title">
+      <p class="section-kicker">Catálogo ao vivo</p>
+      <h1 id="catalog-title">Canais ao vivo online grátis</h1>
+      <p>
+        Encontre rapidamente canais de esportes, filmes, séries, notícias, desenhos, variedades e TV aberta.
+        A página foi otimizada para celular, computador e Smart TV.
+      </p>
+      <div class="catalog-stats" aria-label="Resumo do catálogo">
+        <span><strong id="channel-count">100+</strong> canais</span>
+        <span><strong id="category-count">8</strong> categorias</span>
+        <span><strong>HD</strong> no navegador</span>
+      </div>
+    </section>
 
-<div class="container">
+    <section id="catalogo-canais" class="home-canais-section" aria-labelledby="grid-title">
+      <div class="section-heading">
+        <div>
+          <h2 class="home-canais-title" id="grid-title">Todos os canais</h2>
+          <p class="section-description">Use a busca ou filtre por categoria para abrir o canal desejado.</p>
+        </div>
+      </div>
 
-  <h1 class="home-canais-title">Canais ao Vivo</h1>
+      <div class="catalog-toolbar" role="search">
+        <div class="filter-bar" id="filter-bar" aria-label="Filtrar canais por categoria"></div>
+        <label class="search-wrap">
+          <span class="sr-only">Buscar canal</span>
+          <input type="search" id="search-canais" placeholder="Buscar canal, esporte, filme ou notícia..." autocomplete="off">
+        </label>
+      </div>
 
-  <input type="search" id="search-canais" placeholder="Buscar canal...">
+      <p class="results-summary" id="results-summary" aria-live="polite">Carregando canais disponíveis...</p>
 
-  <!-- IMPORTANTE: NÃO MEXER (canais.js usa isso) -->
-  <section class="grid" id="canais-grid">
-    <p style="text-align:center;padding:40px;color:#777">
-      Carregando canais...
-    </p>
-  </section>
+      <section class="grid" id="canais-grid" aria-busy="true">
+        <p class="empty-state" role="status">Carregando canais...</p>
+      </section>
+    </section>
 
-  <!-- SEO -->
-  <article class="seo-content">
-  <article class="seo-content">
-    <h2>Catálogo Completo: Todos os Canais da Pirate TV Oficial</h2>
+    <section class="info-grid" aria-label="Vantagens do catálogo">
+      <article class="info-card">
+        <h2>Busca rápida</h2>
+        <p>O catálogo filtra por nome e categoria para abrir transmissões ao vivo com menos cliques.</p>
+      </article>
+      <article class="info-card">
+        <h2>Layout responsivo</h2>
+        <p>Os cards, filtros e players se adaptam para celular, tablet, computador e telas maiores.</p>
+      </article>
+      <article class="info-card">
+        <h2>SEO organizado</h2>
+        <p>As páginas usam título, descrição, canonical, Open Graph, breadcrumbs e dados estruturados.</p>
+      </article>
+    </section>
 
-    <p>
-      O <strong><a href="https://piratetv.cfd/" rel="noopener noreferrer">Pirate TV</a></strong> entrega o maior e mais organizado catálogo da internet. Nossa lista unifica opções brilhantes para quem precisa <strong>assistir TV online grátis</strong>, assegurando que o usuário passeie intuitivamente por entre as diversas transmissões. Com <strong>canais ao vivo</strong> fechados e abertos disponíveis com um único clique.
-    </p>
+    <article class="card">
+      <h2>Assistir canais ao vivo grátis no Pirate TV</h2>
+      <p>
+        O Pirate TV reúne canais ao vivo online em um catálogo simples para quem quer assistir TV grátis
+        pelo navegador. A lista inclui opções de futebol ao vivo, esportes, notícias, filmes, séries,
+        desenhos, canais abertos e variedades.
+      </p>
+      <h3>Canais para celular e computador</h3>
+      <p>
+        A navegação foi pensada para abrir bem em telas pequenas e grandes. No celular, os cards ficam
+        compactos e fáceis de tocar. No computador, a grade aproveita melhor o espaço para exibir mais canais.
+      </p>
+      <h3>Categorias populares</h3>
+      <ul>
+        <li>Esportes e futebol ao vivo online</li>
+        <li>Filmes, séries e entretenimento</li>
+        <li>Notícias ao vivo e canais abertos</li>
+        <li>Conteúdo infantil, documentários e variedades</li>
+      </ul>
+    </article>
+  </main>
 
-    <p>
-      Sinta-se à vontade para utilizar o nosso sistema de buscas velozes para ir no alvo incerto ou explorar abaixo a grade robusta do <strong>Pirate TV</strong> para ver tv pelo celular, Smart TV ou PC!
-    </p>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo-link">
+          <img src="piratetv_footer_v2.png" alt="Pirate TV" class="footer-logo-img">
+        </a>
+        <p class="footer-tagline">Pirate TV é o seu portal para assistir TV online grátis em HD.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Navegação</h5>
+          <a href="/">Início</a>
+          <a href="/canais">Canais</a>
+          <a href="/bbb">BBB Ao Vivo</a>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p><a href="/">Pirate TV</a> &copy; 2026 - Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
 
-    <h3>Futebol Ao Vivo e Agenda Esportiva</h3>
-
-    <p>
-      Diga adeus à caçada infindável por <strong>futebol ao vivo online</strong>. Nós centralizamos as maiores redes do ramo, incluindo ESPN, SporTV, Bandsports, TNT e Premiere, garantindo que você vibre com o seu time do coração com o mínimo de interrupções. Tudo roda limpo num formato de <strong>multicanais otimizado</strong>!
-    </p>
-
-    <ul>
-      <li>Links revisados de minuto a minuto para máxima estabilidade </li>
-      <li>Transmissões da Libertadores, Brasileirão e Champions League</li>
-      <li>Vários reprodutores simultâneos para você nunca perder o gol</li>
-      <li>Resolução adaptável para internet lenta ou fibra óptica alta</li>
-    </ul>
-
-    <h3>Variedade Extrema: Filmes, Séries e realities Ao Vivo </h3>
-
-    <p>
-      Quando a bola para rolar, o <strong>Pirate TV</strong> brilha com os maiores estúdios globais, transmitindo os renomados <strong>canais de TV online</strong> inteiramente dedicados aos sucessos de bilheteria e a maratonas de séries. Nós disponibilizamos a mesma grade da TV paga para você de graça.
-    </p>
-
-    <p>
-      Também contamos com atenção em tempo real aos grandes reality shows do país. Uma verdadeira febre é nossa cobertura total: 
-      <a href="/bbb.html" title="Assista ao BBB 26 ao vivo">Veja aqui o BBB 26 ao vivo (Câmeras e Mosaico)</a> com disponibilidade 24h para você espiar absolutamnte tudo!
-    </p>
-
-    <h3>Quais os Diferenciais do Nosso Multicanais?</h3>
-
-    <ul>
-      <li><strong>Custo zero:</strong> Sem assinatura e nunca pediremos cartão.</li>
-      <li><strong>Limpo de Malwares:</strong> Sem pop-ups destrutivos, 100% focado no player.</li>
-      <li><strong>Lista Ilimitada:</strong> Canais abertos globais e as raridades pagas numa página só.</li>
-      <li><strong>Zapping Super Rápido:</strong> Explore, pesquise na barra e assista instantaneamente.</li>
-    </ul>
-
-    <h4>Turbine sua Sessão Pipoca</h4>
-
-    <p>
-      Dica aos maratonistas do nosso site: use fones de ouvido para curtir o áudio estéreo original dos canais HD do <strong>Pirate TV</strong> e coloque em modo tela cheia para absorver a verdadeira imersão. Nossa estrutura suporta Chromecast perfeitamente na maioria das operadoras mobile.
-    </p>
-
-    <p>
-      Bem-vindo ao verdadeiro portal sem chaves. Assista, compartilhe com a galera e crie um atalho na sua tela principal para manter o entretenimento de elite a um clique da sua mão!
-    </p>
-  </article>
-
-</div>
-
-<footer>
-<div class="footer-inner">
-  Pirate TV é o seu portal multicanais oficial na web para assistir TV online grátis.<br>
-  Transmissões contínuas e sem cortes em HD de futebol, filmes e entretenimento!
-</div>
-</footer>
-
-<!-- SEU SISTEMA ORIGINAL -->
-<script src="assets/canais.js"></script>
-
-<script>
-// BUSCA (mantida)
-const searchInput = document.getElementById('search-canais');
-
-searchInput.addEventListener('input', () => {
-  const q = searchInput.value.toLowerCase();
-
-  document.querySelectorAll('.channel-card').forEach(card => {
-    const nome = card.querySelector('h3')?.textContent.toLowerCase() || '';
-    card.style.display = nome.includes(q) ? '' : 'none';
-  });
-});
-</script>
-
+  <script src="assets/canais.js"></script>
 </body>
 </html>
-
